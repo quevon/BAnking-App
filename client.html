@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="client.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <title>Client</title>
+</head>
+<body>
+    <div class="main-board">
+        <div class="grid-container">
+            <div class="item1">
+                <div class="balance">$1000.00</div>
+                <div class="footer">
+                    <div class="account-number">6353 7863 5274 9817</div>
+                    <div class="visa">Visa</div>
+                </div>
+            </div>
+            <div class="item2" id="item2">
+                <i class="fa fa-plus"></i>
+                <div class="deposit">Deposit</div>
+            </div>
+            <div class="item3" id="item3">
+                <i class="fas fa-dollar-sign"></i>
+                <div class="save-money">Send Money</div>
+            </div>  
+            <div class="item4" id="item4">
+                <i class="fas fa-minus"></i>
+                <div class="withdraw">Withdraw</div>
+            </div>
+            <div class="item5" id="item5">
+                <i class="fas fa-user-friends"></i>
+                <div class="friends">Friends</div>
+            </div>
+            <div class="item6">
+                <div class="header">Expenses</div>
+                <div class="add-board">
+                    <table class="table">
+                        <thead>
+                            <th>Expenses</th>
+                            <th>Cost</th>
+                            <th>Icon</th>
+                        </thead>
+                        <tbody>
+                            <td data-label="Expenses">Pc</td>
+                            <td data-label="Cost">$100.00</td>
+                            <td data-label="Icon"><i class="fas fa-trash-alt"></i><span><i class="fas fa-pencil-alt"></i></span></td>
+                        </tbody>
+                        <tbody>
+                            <td data-label="Expenses">Pc</td>
+                            <td data-label="Cost">$100.00</td>
+                            <td data-label="Icon"><i class="fas fa-trash-alt"></i><span><i class="fas fa-pencil-alt"></i></span></td>
+                        </tbody>
+                        <tbody>
+                            <td data-label="Expenses">Pc</td>
+                            <td data-label="Cost">$100.00</td>
+                            <td data-label="Icon"><i class="fas fa-trash-alt"></i><span><i class="fas fa-pencil-alt"></i></span></td>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="addBtn" onclick="add()">Add Expense</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

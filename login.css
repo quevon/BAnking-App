@@ -25,6 +25,7 @@
 .header{
     text-align: center;
     font-size: 30px;
+    width: 100%;
 }
 .button-box{
     width: 220px;
@@ -50,7 +51,6 @@
     background: linear-gradient(to right, #ff105f,#ffad06);
     border-radius: 30px;
     transition: 0.5s;
-
 }
 .social-icons{
     margin: 30px auto;

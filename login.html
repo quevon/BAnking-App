@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <title>Document</title>
+    <title>Login
+
+    </title>
 </head>
 <body>
     <div class="hero">
         
         <div class="form-box">
-            <div class="header">Avion Bank</div>
+            <div class="header">Quevon Bank</div>
             <div class="button-box">
                 <dv id="btn"></dv>
-                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                <button id="loginBtn" type="button" class="toggle-btn" >Log In</button>
+                <button id="regiBtn" type="button" class="toggle-btn" >Register</button>
             </div>
             <div class="social-icons">
                 <img src="./images/fb.png">
@@ -23,19 +25,21 @@
                 <img src="./images/gp.png">
             </div>
             <form id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="User ID" required>
-                <input type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box"required><span>Remember Password</span> 
-                <button type="submit" class="submit-btn">Log in</button> 
+                <input id="uname" type="text" class="input-field" placeholder="Enter Username" required>
+                <input id="psw" type="password" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check-box"><span>Remember Password</span> 
+                <button  id="loginBtn1" type="submit" class="submit-btn">Log in</button> 
             </form>
-            <form id="register" class="input-group">
-                <input type="text" class="input-field" placeholder="User ID" required>
-                <input type="text" class="input-field" placeholder="Email ID" required>
-                <input type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box "required><span>I agree to the terms & conditions</span> 
-                <button type="submit" class="submit-btn">Register</button> 
+            <form id="register" class="input-group" role="form" onsubmit="signUp(event);">
+                <input  id="username" name = "Username" type="text" class="input-field" placeholder="User ID" required>
+                <input id="email" name = "Email" type="text" class="input-field" placeholder="Email ID" required>
+                <input id ="pword" name = "Password" type="password" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check-box "><span>I agree to the terms & conditions</span> 
+                <button id="regiBtn1" type="submit" class="submit-btn">Register</button> 
             </form>
         </div>
+
+
     </div>
 
     <script src="login.js"></script>
