@@ -1,47 +1,49 @@
-const signUp = e =>{
-    formData = JSON.parse(localStorage.getItem('formData')) || [];
-    formData.push({
-        Username: document.getElementById('username').value,
-        Password: document.getElementById('pword').value,
-        Email: document.getElementById('email').value
-    });
-    localStorage.setItem('formData', JSON.stringify(formData));
-    console.log(localStorage.getItem('formData'));
-    document.querySelector('#register').reset();
-    document.getElementById('username').focus();
-    e.preventDefault();
-}
-var x = document.getElementById("login")
-var y = document.getElementById("register")
-var z = document.getElementById("btn")
-const login = document.getElementById("loginBtn")
-const regi = document.getElementById("regiBtn")
+
+var loginForm = document.getElementById("loginform")
+var regiForm = document.getElementById("registerform")
+var btn = document.getElementById("btn")
+const loginFormBtn = document.getElementById("loginBtn")
+const regiFormBtn = document.getElementById("regiBtn")
 const login1 = document.getElementById("loginBtn1")
 const regi1 = document.getElementById("regiBtn1")
+const checkBox1 = document.getElementById("check-box1")
+const remember = document.getElementById("remember")
+const checkBox2 = document.getElementById("check-box2")
+const agree = document.getElementById("agree")
 
-
-regi.onclick = ()=>{
-    x.style.left = "-400px"
-    y.style.left = "50px"
-    z.style.left = "110px"
-    regi.preventDefault();
+checkBox1.onclick = ()=>{
+    remember.style.color = "#000"
 }
 
-login.onclick = ()=>{
-    x.style.left = "50px"
-    y.style.left = "450px"
-    z.style.left = "0"
-    login.preventDefault();
+checkBox2.onclick = ()=>{
+    agree.style.color = "#000"
 }
 
+
+regiFormBtn.onclick = ()=>{
+    loginForm.style.left = "-400px"
+    regiForm.style.left = "50px"
+    btn.style.left = "110px"
+    regiFormBtn.preventDefault();
+}
+
+loginFormBtn.onclick = ()=>{
+    loginForm.style.left = "50px"
+    regiForm.style.left = "450px"
+    btn.style.left = "0"
+    loginFormBtn.preventDefault();
+}
 login1.onclick = (a)=>{
     const username = document.getElementById("uname").value;
     const password = document.getElementById("psw").value;
 
-    var data = JSON.parse(localStorage.getItem('formData'));    
-    for(let i = 0;i < data.length;i++){
+    var data = JSON.parse(localStorage.getItem('formData'));
+    if(username == data[0].Username && password == data[0].Password){
+        window.location.replace("./admin.html");
+    }
+    for(let i = 1;i < data.length;i++){
         if (username == data[i].Username && password == data[i].Password) {
-            window.location.replace("./admin.html");
+            window.location.replace("./client.html");
         }else{
             continue
         }

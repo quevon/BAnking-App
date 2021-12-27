@@ -10,7 +10,7 @@
     </title>
 </head>
 <body>
-    <div class="hero">
+    <div class="forms">
         
         <div class="form-box">
             <div class="header">Quevon Bank</div>
@@ -24,17 +24,21 @@
                 <img src="./images/tw.png">
                 <img src="./images/gp.png">
             </div>
-            <form id="login" class="input-group">
+            <form id="loginform" class="input-group">
                 <input id="uname" type="text" class="input-field" placeholder="Enter Username" required>
                 <input id="psw" type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box"><span>Remember Password</span> 
+                <input type="checkbox"  id="check-box1" class="check-box"><span id="remember">Remember Password</span> 
                 <button  id="loginBtn1" type="submit" class="submit-btn">Log in</button> 
             </form>
-            <form id="register" class="input-group" role="form" onsubmit="signUp(event);">
-                <input  id="username" name = "Username" type="text" class="input-field" placeholder="User ID" required>
+            <form id="registerform" class="input-group" role="form" onsubmit="signUp(event);">
+                <input  id="firstname" name = "Firstname" type="text" class="input-field" placeholder="Firstname" required>
+                <input  id="middlename" name = "Middlename" type="text" class="input-field" placeholder="Middlename" required>
+                <input  id="lastname" name = "Lastname" type="text" class="input-field" placeholder="Lastname" required>
+                <input  id="contact" name = "Contact Number" type="number" class="input-field" placeholder="Contact" required>
+                <input  id="username" name = "Username" type="text" class="input-field" placeholder="Username" required>
                 <input id="email" name = "Email" type="text" class="input-field" placeholder="Email ID" required>
                 <input id ="pword" name = "Password" type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box "><span>I agree to the terms & conditions</span> 
+                <input type="checkbox" id="check-box2" class="check-box" required><span id="agree">I agree to the terms & conditions</span> 
                 <button id="regiBtn1" type="submit" class="submit-btn">Register</button> 
             </form>
         </div>
@@ -43,5 +47,6 @@
     </div>
 
     <script src="login.js"></script>
+    <script src="registration.js"></script>
 </body>
 </html>

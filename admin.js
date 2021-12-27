@@ -6,9 +6,11 @@ window.addEventListener('load' , () => {
         JSON.parse(localStorage.getItem('formData')).forEach(data => {
             output.innerHTML += `
                     <tr>
-                        <td>${data.Username}</td>
+                        <td>${data.Firstname}</td>
+                        <td>${data.Middlename}</td>
+                        <td>${data.Lastname}</td>
+                        <td>${data.Contact}</td>
                         <td>${data.Email}</td>
-                        <td>${data.Password}</td>
                     </tr>
             `;
         });
