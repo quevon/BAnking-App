@@ -10,11 +10,11 @@
 </head>
 <body>
     <div class="main-board">
-        <div class="grid-container">
+        <div id="grid-board" class="grid-container">
             <div class="item1">
                 <div class="balance">$1000.00</div>
                 <div class="footer">
-                    <div class="account-number">6353 7863 5274 9817</div>
+                    <div id="account-number" class="account-number">6353 7863 5274 9817</div>
                     <div class="visa">Visa</div>
                 </div>
             </div>
@@ -39,30 +39,30 @@
                 <div class="add-board">
                     <table class="table">
                         <thead>
-                            <th>Expenses</th>
-                            <th>Cost</th>
-                            <th>Icon</th>
+                            <tr>
+                                <th>Expenses</th>
+                                <th>Cost</th>
+                                <th>Action</th>
+                            </tr>
                         </thead>
-                        <tbody>
-                            <td data-label="Expenses">Pc</td>
-                            <td data-label="Cost">$100.00</td>
-                            <td data-label="Icon"><i class="fas fa-trash-alt"></i><span><i class="fas fa-pencil-alt"></i></span></td>
-                        </tbody>
-                        <tbody>
-                            <td data-label="Expenses">Pc</td>
-                            <td data-label="Cost">$100.00</td>
-                            <td data-label="Icon"><i class="fas fa-trash-alt"></i><span><i class="fas fa-pencil-alt"></i></span></td>
-                        </tbody>
-                        <tbody>
-                            <td data-label="Expenses">Pc</td>
-                            <td data-label="Cost">$100.00</td>
-                            <td data-label="Icon"><i class="fas fa-trash-alt"></i><span><i class="fas fa-pencil-alt"></i></span></td>
-                        </tbody>
+                            <tbody>
+                                <!-- local storage -->
+                            </tbody>
                     </table>
                 </div>
-                <button type="button" class="addBtn" onclick="add()">Add Expense</button>
+                <button id="addFormBtn" type="button" class="addBtn">Add Expense</button>
             </div>
+         
         </div>
+        <div id ="expenseform" class="expense-box">
+            <button id="exit" type="button" class="exitBtn">Exit</button>
+             <form id="add-expenses" class="input-group" role="form" onsubmit="addExpense(event);">
+                 <input  id="expense" name = "Item" type="text" class="input-field" placeholder="Enter expense" required>
+                 <input  id="cost" name = "Cost" type="number" class="input-field" placeholder="Enter Cost" required>
+                 <button id="addBtn1" type="submit" class="submit-btn">Add</button> 
+             </form>
+         </div>
     </div>
+    <script src="client.js"></script>
 </body>
 </html>

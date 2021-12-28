@@ -15,3 +15,4 @@ const signUp = e =>{
     document.getElementById('username').focus();
     e.preventDefault();
 }
+

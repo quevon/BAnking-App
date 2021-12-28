@@ -81,7 +81,6 @@
     transition: .5s;
     max-height: 300px;
     overflow-x: hidden;
-
 }
 .input-field{
     width: 100%;
@@ -107,6 +106,10 @@
 }
 .check-box{
     margin: 30px 10px 30px 0;
+}
+#show{
+    color: #777;
+    font-size: 12px;
 }
 #remember{
     color: #777;

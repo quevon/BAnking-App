@@ -6,17 +6,35 @@ const loginFormBtn = document.getElementById("loginBtn")
 const regiFormBtn = document.getElementById("regiBtn")
 const login1 = document.getElementById("loginBtn1")
 const regi1 = document.getElementById("regiBtn1")
+const passwordBox = document.getElementById("psw")
+const checkBox = document.getElementById("check-box")
+const show = document.getElementById("show")
 const checkBox1 = document.getElementById("check-box1")
 const remember = document.getElementById("remember")
 const checkBox2 = document.getElementById("check-box2")
 const agree = document.getElementById("agree")
 
+
+checkBox.onchange = ()=>{
+    let typeAttribute = passwordBox.getAttribute('type');
+    if(typeAttribute == 'password'){
+        passwordBox.setAttribute('type','text');
+    }else{
+        passwordBox.setAttribute('type','password');
+    }
+}
+
 checkBox1.onclick = ()=>{
     remember.style.color = "#000"
 }
 
-checkBox2.onclick = ()=>{
-    agree.style.color = "#000"
+checkBox2.onchange = ()=>{
+    let color = agree.style.color = '#777'
+    if (color == '#777'){
+        agree.style.color = "red"
+    }else{
+        agree.style.color = '#777'
+    }
 }
 
 
