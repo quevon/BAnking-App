@@ -22,6 +22,7 @@
     background-position: center;
     background-size: cover;
     position: absolute;
+
 }
 .form-box{
     width: 380px;
@@ -125,6 +126,178 @@
     left: 50px;
 }
 #registerform{
-    left: 450px;
-    
+    left: 450px;  
+}
+/* client style */
+#mainBoard{
+    display: none;
+}
+.main-board{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(./images/banner.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+  
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 300px auto auto;
+    grid-gap: 10px;
+    width: 740px;
+    margin: 6% auto;
+    position: relative;
+    background-color: #2196F3;
+    padding: 10px;
+    opacity: 1;
+}
+  
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.item1 {
+    grid-row: 1 / span 2;
+    box-shadow:  0 0 20px 9px #ff61241f; 
+}
+.item6 {
+    grid-column: 1/ span 3;
+}
+.item2:hover,
+.item3:hover,
+.item4:hover,
+.item5:hover{
+    transform: scale(1.1)
+}
+.item1 .balance{
+    font-size: 3rem;
+} 
+.item1 .footer{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+.item1 .footer .account-number{
+    padding-left: 10px;
+}
+.item1 .footer .visa{
+    padding-right: 10px;
+}
+
+.item6 .header{
+    font-size: 1rem;
+}
+.item6 .add-board{
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    overflow-x: hidden;
+}
+.table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.table thead tr {
+    background:  linear-gradient(to right, #ff105f,#ffad06);
+    color: #ffffff;
+    text-align: left;
+}
+.table th,
+.table td {
+    padding: 12px 15px;
+}
+.item6 .addBtn{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    border-radius: 30px;
+    border: 0;
+    transition: 1s;
+}
+.item6 .addBtn:hover{
+    background: linear-gradient(to right, #ffad06,#ff105f);
+}
+
+.item6 .table td,
+.item6 .table th{
+    padding: 12px 80px;
+    text-align: center;
+}
+/* add expense section styling*/
+#expenseform{
+    display: none;
+}
+#depositform{
+    display: none;
+}
+#withdrawform{
+    display: none;
+}
+.expense-box,
+.deposit-box,
+.withdraw-box{
+    width: 380px;
+    height: 170px;
+    position: absolute;
+    margin: 10% auto 0 35%;
+    background: #fff;
+    padding: 5px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    box-shadow:  0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+    cursor: pointer;
+    top: 0;
+    transition: 1s;
+}
+.fa-window-close{
+    display: flex;
+    justify-content: end;
+    font-size: 1rem;
+    padding-right: 30px;
+}
+#exit:hover{
+    color: red;
+}
+.input-field1{
+    width: 80%;
+    padding: 10px  0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+.add-btn,
+.deposit-btn,
+.withdraw-btn{
+    width: 50%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+.icon{
+    cursor: pointer;
+}
+#usernameHeader{
+    display: none;
 }

@@ -11,8 +11,10 @@ window.addEventListener('load' , () => {
                         <td>${data.Lastname}</td>
                         <td>${data.Contact}</td>
                         <td>${data.Email}</td>
+                        <td>${data.Amount}</td>
                     </tr>
             `;
         });
     }
 });
+

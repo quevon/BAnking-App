@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="login.css">
+
     <title>Login
 
     </title>
 </head>
 <body>
-    <div class="forms">
+    <div id="mainForm" class="forms">
         
         <div class="form-box">
             <div class="header">Quevon Bank</div>
@@ -31,23 +33,102 @@
                 <input type="checkbox"  id="check-box1" class="check-box"><span id="remember">Remember Password</span> 
                 <button  id="loginBtn1" type="submit" class="submit-btn">Log in</button> 
             </form>
-            <form id="registerform" class="input-group" role="form" onsubmit="signUp(event);">
+            <form id="registerform" class="input-group" role="form" onsubmit="signUp(event);return false">
                 <input  id="firstname" name = "Firstname" type="text" class="input-field" placeholder="Firstname" required>
                 <input  id="middlename" name = "Middlename" type="text" class="input-field" placeholder="Middlename" required>
                 <input  id="lastname" name = "Lastname" type="text" class="input-field" placeholder="Lastname" required>
                 <input  id="contact" name = "Contact Number" type="number" class="input-field" placeholder="Contact" required>
-                <input  id="username" name = "Username" type="text" class="input-field" placeholder="Username" required>
                 <input id="email" name = "Email" type="text" class="input-field" placeholder="Email ID" required>
+                <input id="amount" name = "Amount" type="number" class="input-field" placeholder="Enter Amount" required>
+                <input  id="username" name = "Username" type="text" class="input-field" placeholder="Username" required>
                 <input id ="pword" name = "Password" type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" id="check-box2" class="check-box" required><span id="agree">I agree to the terms & conditions</span> 
+                <input type="checkbox" id="check-box3" class="check-box" required><span id="payment">Pay with Gcash</span>
+                <input type="checkbox" id="check-box2" class="check-box" required><span id="agree">I agree to the terms & conditions</span>
                 <button id="regiBtn1" type="submit" class="submit-btn">Register</button> 
+                <button id="clear" type="submit" class="submit-btn">Clear</button> 
             </form>
         </div>
 
 
     </div>
 
+    <div id="mainBoard" class="main-board">
+        <h1 id="usernameHeader"></h1>
+        <div id="grid-board" class="grid-container">
+            <div class="item1">
+                <div id="currentBalance" class="balance" ></div>
+                <div class="footer">
+                    <div id="account-number" class="account-number">6353 7863 5274 9817</div>
+                    <div class="visa">Visa</div>
+                </div>
+            </div>
+            <div class="item2" id="depositFormBtn">
+                <i class="fa fa-plus"></i>
+                <div class="deposit">Deposit</div>
+            </div>
+            <div class="item3" id="sendMoneyFormBtn">
+                <i class="fas fa-dollar-sign"></i>
+                <div class="save-money">Send Money</div>
+            </div>  
+            <div class="item4" id="withdrawFormBtn">
+                <i class="fas fa-minus"></i>
+                <div class="withdraw">Withdraw</div>
+            </div>
+            <div class="item5" id="item5">
+                <i class="fas fa-user-friends"></i>
+                <div class="friends">Friends</div>
+            </div>
+            <div class="item6">
+                <div class="header">Expenses</div>
+                <div class="add-board">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Expenses</th>
+                                <th>Cost</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                <!-- local storage -->
+                            </tbody>
+                    </table>
+                </div>
+                <button id="addFormBtn" type="button" class="addBtn">Add Expense</button>
+            </div>
+         
+        </div>
+        <section id ="expenseform">
+            <div  class="expense-box">
+                <i id="exit" class="far fa-window-close"></i>
+                <form id="add-expenses" class="input-group1" role="form" >
+                    <input  id="expense" name = "Item" type="text" class="input-field1" placeholder="Enter expense" required>
+                    <input  id="cost" name = "Cost" type="number" class="input-field1" placeholder="Enter Cost" required>
+                    <button id="addBtn1" type="submit" class="add-btn">Add</button> 
+                </form>
+            </div>
+        </section>
+        <section id="depositform">
+            <div class="deposit-box">
+                <i id="exit1" class="far fa-window-close"></i>
+                <input  id="depositValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                <p class="current_money">Current Balance: <span id ="current_money"></span></p>
+                <button id="depositBtn" type="submit" class="deposit-btn">Deposit</button> 
+            </div>
+        </section>
+        <section id="withdrawform">
+            <div class="withdraw-box">
+                <i id="exit2" class="far fa-window-close"></i>
+                <input  id="withdrawValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
+                <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>   
+            </div>
+        </section>
+    </div>
+ 
+
     <script src="login.js"></script>
+    <script src="client.js"></script>
     <script src="registration.js"></script>
 </body>
 </html>
