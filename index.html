@@ -30,8 +30,8 @@
                 <input type="checkbox"  id="check-box1" class="check-box"><span id="remember">Remember Password</span> 
                 <button  id="loginBtn1" type="submit" class="submit-btn">Log in</button> 
             </form>
-            <form id="registerform" class="input-group" role="form" onsubmit="signUp(event);return false">
                 <input  id="accountNumber" name = "account-number" type="text" class="input-field" required>
+            <form id="registerform" class="input-group" role="form" onsubmit="signUp(event)">
                 <input  id="firstname" name = "Firstname" type="text" class="input-field" placeholder="Firstname" required>
                 <input  id="middlename" name = "Middlename" type="text" class="input-field" placeholder="Middlename" required>
                 <input  id="lastname" name = "Lastname" type="text" class="input-field" placeholder="Lastname" required>
@@ -99,7 +99,7 @@
         <section id ="expenseform">
             <div  class="expense-box">
                 <i id="exit" class="far fa-window-close"></i>
-                <form id="add-expenses" class="input-group1" role="form" >
+                <form id="addExpensesForm" class="input-group1" role="form" onsubmit="addExpense(event)">
                     <input  id="expense" name = "Item" type="text" class="input-field1" placeholder="Enter expense" required>
                     <input  id="cost" name = "Cost" type="number" class="input-field1" placeholder="Enter Cost" required>
                     <button id="addBtn1" type="submit" class="add-btn">Add</button> 
@@ -109,17 +109,21 @@
         <section id="depositform">
             <div class="deposit-box">
                 <i id="exit1" class="far fa-window-close"></i>
-                <input  id="depositValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
-                <p class="current_money">Current Balance: <span id ="current_money"></span></p>
-                <button id="depositBtn" type="submit" class="deposit-btn">Deposit</button> 
+                <form id="depositForm1" role="form" onsubmit="deposit(event)">
+                    <input  id="depositValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <p class="current_money">Current Balance: <span id ="current_money"></span></p>
+                    <button id="depositBtn" type="submit" class="deposit-btn">Deposit</button>
+                </form> 
             </div>
         </section>
         <section id="withdrawform">
             <div class="withdraw-box">
                 <i id="exit2" class="far fa-window-close"></i>
-                <input  id="withdrawValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
-                <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
-                <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>   
+                <form id="withdrawform1" role="form" onsubmit="widthDraw(event)">
+                    <input  id="withdrawValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
+                    <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>  
+                </form> 
             </div>
         </section>
     </div>

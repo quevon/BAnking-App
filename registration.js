@@ -16,7 +16,7 @@ const signUp = e =>{
         });
         localStorage.setItem('formData', JSON.stringify(formData));
         alert("Registered Successfully")
-        document.getElementById('register').reset();
+        document.getElementById('registerform').reset();
         document.getElementById('firstname').focus();
     }else{
         alert("Username already exist!")

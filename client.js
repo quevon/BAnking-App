@@ -15,7 +15,7 @@ const withdrawBtn = document.getElementById('withdrawBtn');
 const usernameHeader = document.getElementById('usernameHeader');
 const accountNumber = document.getElementById('account-number')
 
-depositBtn.onclick = () =>{
+const deposit = e =>{
     var inputAmount = document.getElementById('depositValue').value;
     var total = document.getElementById('current_money');
     var currentBalance = output.innerHTML;
@@ -31,15 +31,18 @@ depositBtn.onclick = () =>{
     console.log("After update: ", listArray1[objIndex]);
     output.innerHTML = listArray1[objIndex].Amount; 
     localStorage.setItem('formData', JSON.stringify(listArray1));
-    document.getElementById('depositValue').value = '';
+    document.getElementById('depositForm1').reset();
+    document.getElementById('depositValue').focus();
+    e.preventDefault();
 }
-withdrawBtn.onclick = () =>{
+const widthDraw = e =>{
     var inputAmount = document.getElementById('withdrawValue').value;
     var total = document.getElementById('current_money1');
     var currentBalance = output.innerHTML;
     if (parseFloat(currentBalance) < parseFloat(inputAmount)){
         alert("You don't have enough balance!")
         currentBalance
+        e.preventDefault();
     }else{
         var totalAmount = parseFloat(currentBalance) - parseFloat(inputAmount);
         total.innerHTML = totalAmount;
@@ -52,13 +55,15 @@ withdrawBtn.onclick = () =>{
         console.log("After update: ", listArray2[objIndex]);
         output.innerHTML = listArray2[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray2));
-        document.getElementById('withdrawValue').value = '';
+        document.getElementById('withdrawform1').reset();
+        document.getElementById('withdrawValue').focus();
+        e.preventDefault();
     }
    
     //Find index of specific object using findIndex method.
     
 }
-add1.onclick = (e)=>{
+const addExpense = e =>{
     formData1 = JSON.parse(localStorage.getItem('formData1')) || [];
     formData1.push({
         Username: document.getElementById('usernameHeader').innerText,
@@ -67,8 +72,7 @@ add1.onclick = (e)=>{
     });
     localStorage.setItem('formData1', JSON.stringify(formData1));
     displayData();
-    document.getElementById('expense').value = '';
-    document.getElementById('cost').value = '';
+    document.getElementById('addExpensesForm').reset();
     document.getElementById('expense').focus();
     e.preventDefault();
 }
