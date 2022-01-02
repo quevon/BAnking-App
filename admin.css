@@ -41,7 +41,9 @@ html::-webkit-scrollbar-thumb{
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
-
+#search{
+   margin:10px;
+}
 
 
 

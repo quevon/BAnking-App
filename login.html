@@ -39,10 +39,9 @@
                 <input  id="lastname" name = "Lastname" type="text" class="input-field" placeholder="Lastname" required>
                 <input  id="contact" name = "Contact Number" type="number" class="input-field" placeholder="Contact" required>
                 <input id="email" name = "Email" type="text" class="input-field" placeholder="Email ID" required>
-                <input id="amount" name = "Amount" type="number" class="input-field" placeholder="Enter Amount" required>
+                <input id="amount" name = "Amount" type="number" class="input-field" placeholder="Enter Amount" value="0" required>
                 <input  id="username" name = "Username" type="text" class="input-field" placeholder="Username" required>
                 <input id ="pword" name = "Password" type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" id="check-box3" class="check-box" required><span id="payment">Pay with Gcash</span>
                 <input type="checkbox" id="check-box2" class="check-box" required><span id="agree">I agree to the terms & conditions</span>
                 <button id="regiBtn1" type="submit" class="submit-btn">Register</button> 
                 <button id="clear" type="submit" class="submit-btn">Clear</button> 
@@ -81,9 +80,10 @@
             <div class="item6">
                 <div class="header">Expenses</div>
                 <div class="add-board">
-                    <table class="table">
+                    <table class="table" id="myTable2">
                         <thead>
                             <tr>
+                                <th>Username</th>
                                 <th>Expenses</th>
                                 <th>Cost</th>
                                 <th>Action</th>

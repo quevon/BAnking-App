@@ -71,7 +71,7 @@ login1.onclick = (a)=>{
     const password = document.getElementById("psw").value;
    
     var data = JSON.parse(localStorage.getItem('formData'));
-  
+    
     if(username == data[0].Username && password == data[0].Password){
         window.location.replace("./admin.html");
     }
@@ -85,9 +85,9 @@ login1.onclick = (a)=>{
             continue
         }
     }
+    
     a.preventDefault();
 }
-// client js
 
 
 

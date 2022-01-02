@@ -30,12 +30,13 @@ depositBtn.onclick = () =>{
     console.log("After update: ", listArray1[objIndex]);
     output.innerHTML = listArray1[objIndex].Amount; 
     localStorage.setItem('formData', JSON.stringify(listArray1));
+    document.getElementById('depositValue').value = '';
 }
 withdrawBtn.onclick = () =>{
     var inputAmount = document.getElementById('withdrawValue').value;
     var total = document.getElementById('current_money1');
     var currentBalance = output.innerHTML;
-    if (currentBalance < inputAmount){
+    if (parseFloat(currentBalance) < parseFloat(inputAmount)){
         alert("You don't have enough balance!")
         currentBalance
     }else{
@@ -50,34 +51,39 @@ withdrawBtn.onclick = () =>{
         console.log("After update: ", listArray2[objIndex]);
         output.innerHTML = listArray2[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray2));
+        document.getElementById('withdrawValue').value = '';
     }
+   
     //Find index of specific object using findIndex method.
     
 }
 add1.onclick = (e)=>{
     formData1 = JSON.parse(localStorage.getItem('formData1')) || [];
     formData1.push({
+        Username: document.getElementById('usernameHeader').innerText,
         Item: document.getElementById('expense').value,
         Cost: document.getElementById('cost').value,
     });
-    e.preventDefault();
     localStorage.setItem('formData1', JSON.stringify(formData1));
-    console.log(localStorage.getItem('formData1'));
-    document.querySelector('#add-expense').reset();
-    document.getElementById('expense').focus();
     displayData();
+    document.getElementById('expense').value = '';
+    document.getElementById('cost').value = '';
+    document.getElementById('expense').focus();
     e.preventDefault();
 }
+displayData();
 
 let add = document.getElementById('addBtn1')
 function displayData() {
     console.log(localStorage.getItem('formData1'));
     if(localStorage.getItem('formData1')){
+
         var output = document.querySelector('tbody');
         output.innerHTML = "";
         JSON.parse(localStorage.getItem('formData1')).forEach((data,index) => {
             output.innerHTML += `
                     <tr>
+                        <td>${data.Username}</td>
                         <td>${data.Item}</td>
                         <td>${data.Cost}</td>
                         <td><span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span></td>
@@ -86,8 +92,30 @@ function displayData() {
         });
     }
 }
-displayData();
 
+
+
+window.onmouseover = () =>{
+    let input, filter,table, tr,td,txtValue;
+
+    input = document.getElementById('usernameHeader');
+    filter = input.innerHTML.toUpperCase();
+    table = document.getElementById('myTable2');
+    tr = table.getElementsByTagName('tr');
+
+
+    for(let i = 0; i<tr.length; i++){
+        td=tr[i].getElementsByTagName('td')[0];
+        if(td){
+            txtValue = td.textContent || td.innerText;
+            if(txtValue.toUpperCase().indexOf(filter) > -1){
+                tr[i].style.display = "";
+            }else{
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
 function deleteTask(index){
     if(confirm("Are you sure you want to delete?")){
         let getLocalStorageData = localStorage.getItem("formData1");
@@ -97,6 +125,8 @@ function deleteTask(index){
         displayData();
     }
 }
+
+
 
 //show input form
 
