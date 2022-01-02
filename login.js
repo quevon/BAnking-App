@@ -80,6 +80,7 @@ login1.onclick = (a)=>{
             forms.style.display = "none";
             mainBoard.style.display = "inline-block";
             usernameHeader.innerHTML = data[i].Username
+            accountNumber.innerText = data[i].Account_Number
             output.innerHTML = data[i].Amount
         }else{
             continue
@@ -88,6 +89,19 @@ login1.onclick = (a)=>{
     
     a.preventDefault();
 }
+function randomnumber(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+function randomnumber1(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+function randomnumber2(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+function randomnumber3(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
 
+document.getElementById('accountNumber').value = (`${parseInt(randomnumber(1000,9999))} ${parseInt(randomnumber1(1000,9999))} ${parseInt(randomnumber2(1000,9999))} ${parseInt(randomnumber3(1000,9999))}`)
 
 

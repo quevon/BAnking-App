@@ -145,7 +145,8 @@
     display: grid;
     grid-template-columns: 300px auto auto;
     grid-gap: 10px;
-    width: 740px;
+    width: 70%;
+    height: 82%;
     margin: 6% auto;
     position: relative;
     background-color: #2196F3;
@@ -202,19 +203,15 @@
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.table thead tr {
+.table thead tr{
     background:  linear-gradient(to right, #ff105f,#ffad06);
     color: #ffffff;
     text-align: left;
 }
-.table th,
-.table td {
-    padding: 12px 15px;
-}
+
 .item6 .addBtn{
     padding: 10px 30px;
     cursor: pointer;
@@ -229,8 +226,8 @@
 
 .item6 .table td,
 .item6 .table th{
-    padding: 12px 80px;
-    text-align: center;
+    padding: 12px 70px;
+    text-align: left;
 }
 /* add expense section styling*/
 #expenseform{
@@ -302,5 +299,8 @@
     display: none;
 }
 #amount{
+    display: none;
+}
+#accountNumber{
     display: none;
 }

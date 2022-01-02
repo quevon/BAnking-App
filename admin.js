@@ -1,6 +1,5 @@
 const search = document.getElementById('search')
 
-
 search.onkeyup = () =>{
     let input, filter,table, tr,td,txtValue;
 
@@ -9,9 +8,8 @@ search.onkeyup = () =>{
     table = document.getElementById('myTable');
     tr = table.getElementsByTagName('tr');
 
-
     for(let i = 0; i<tr.length; i++){
-        td=tr[i].getElementsByTagName('td')[0];
+        td=tr[i].getElementsByTagName('td')[0]&&tr[i].getElementsByTagName('td')[1];
         if(td){
             txtValue = td.textContent || td.innerText;
             if(txtValue.toUpperCase().indexOf(filter) > -1){
@@ -26,6 +24,7 @@ search.onkeyup = () =>{
 window.addEventListener('load' , () => {
   display();
 });
+
 function display(){
     console.log(localStorage.getItem('formData'));
     if(localStorage.getItem('formData')){
@@ -34,6 +33,7 @@ function display(){
         JSON.parse(localStorage.getItem('formData')).forEach((data,index) => {
             output.innerHTML += `
                     <tr>
+                        <td>${data.Account_Number}</td>
                         <td>${data.Firstname}</td>
                         <td>${data.Middlename}</td>
                         <td>${data.Lastname}</td>

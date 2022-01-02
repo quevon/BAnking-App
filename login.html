@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="login.css">
-
-    <title>Login
-
-    </title>
+    <title>Login</title>
 </head>
 <body>
     <div id="mainForm" class="forms">
@@ -34,11 +31,12 @@
                 <button  id="loginBtn1" type="submit" class="submit-btn">Log in</button> 
             </form>
             <form id="registerform" class="input-group" role="form" onsubmit="signUp(event);return false">
+                <input  id="accountNumber" name = "account-number" type="text" class="input-field" required>
                 <input  id="firstname" name = "Firstname" type="text" class="input-field" placeholder="Firstname" required>
                 <input  id="middlename" name = "Middlename" type="text" class="input-field" placeholder="Middlename" required>
                 <input  id="lastname" name = "Lastname" type="text" class="input-field" placeholder="Lastname" required>
                 <input  id="contact" name = "Contact Number" type="number" class="input-field" placeholder="Contact" required>
-                <input id="email" name = "Email" type="text" class="input-field" placeholder="Email ID" required>
+                <input id="email" name = "Email" type="email" class="input-field" placeholder="Email ID" required>
                 <input id="amount" name = "Amount" type="number" class="input-field" placeholder="Enter Amount" value="0" required>
                 <input  id="username" name = "Username" type="text" class="input-field" placeholder="Username" required>
                 <input id ="pword" name = "Password" type="password" class="input-field" placeholder="Enter Password" required>
@@ -57,7 +55,7 @@
             <div class="item1">
                 <div id="currentBalance" class="balance" ></div>
                 <div class="footer">
-                    <div id="account-number" class="account-number">6353 7863 5274 9817</div>
+                    <div id="account-number" class="account-number"></div>
                     <div class="visa">Visa</div>
                 </div>
             </div>

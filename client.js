@@ -13,6 +13,7 @@ const depositBtn = document.getElementById('depositBtn');
 const withdrawExit = document.getElementById('exit2');
 const withdrawBtn = document.getElementById('withdrawBtn');
 const usernameHeader = document.getElementById('usernameHeader');
+const accountNumber = document.getElementById('account-number')
 
 depositBtn.onclick = () =>{
     var inputAmount = document.getElementById('depositValue').value;
@@ -92,8 +93,6 @@ function displayData() {
         });
     }
 }
-
-
 
 window.onmouseover = () =>{
     let input, filter,table, tr,td,txtValue;
