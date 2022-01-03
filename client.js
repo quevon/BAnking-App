@@ -5,16 +5,79 @@ const gridBoard = document.getElementById('grid-board');
 const expenseform = document.getElementById('expenseform');
 const depositform = document.getElementById('depositform');
 const withdrawform = document.getElementById('withdrawform');
+const sendMoneyForm = document.getElementById('sendMoneyForm');
 const add1 = document.getElementById('addBtn1');
-const output = document.getElementById("currentBalance")
+const output = document.getElementById("currentBalance");
 const expenseExit = document.getElementById('exit');
 const depositExit = document.getElementById('exit1');
 const depositBtn = document.getElementById('depositBtn');
 const withdrawExit = document.getElementById('exit2');
 const withdrawBtn = document.getElementById('withdrawBtn');
+const sendMoneyFormBtn = document.getElementById('sendMoneyFormBtn');
+const sendMoneyExit = document.getElementById('exit3');
 const usernameHeader = document.getElementById('usernameHeader');
-const accountNumber = document.getElementById('account-number')
+const accountNumber = document.getElementById('account-number');
+const inputAccount = document.getElementById('recieverAccountNumber');
 
+inputAccount.onkeyup = e => {
+    var receiverMoney = document.getElementById('receiverMoney')
+    var inputAccount1 = document.getElementById('recieverAccountNumber');
+    var receiverName = document.getElementById('recieverName')
+
+    let getLocalStorageData2 = localStorage.getItem("formData");   
+    listArray2 = JSON.parse(getLocalStorageData2); 
+    console.log(listArray2);
+    objIndex = listArray2.findIndex((obj => obj.Account_Number == inputAccount1.value));
+
+    receiverName.innerHTML = listArray2[objIndex].Firstname;
+    receiverMoney.value = listArray2[objIndex].Amount;
+}
+ 
+const sendMoney = e =>{
+    var inputAccount = document.getElementById('recieverAccountNumber')
+    var inputAmount = document.getElementById('sendMoneyValue').value;
+    var receiverMoney = document.getElementById('receiverMoney').value;
+    var total = document.getElementById('current_money2');
+    var totalbalanceReciever = document.getElementById('receiver_money2');
+    
+    var currentBalance = output.innerHTML;
+    if (parseFloat(currentBalance) < parseFloat(inputAmount)){
+        alert("You don't have enough balance!")
+        currentBalance
+        e.preventDefault();
+    }else{
+        var totalAmount = parseFloat(currentBalance) - parseFloat(inputAmount);
+        total.innerHTML = totalAmount;
+        var totalAmount2 = parseFloat(inputAmount) + parseFloat(receiverMoney);
+        totalbalanceReciever.innerHTML = totalAmount2;
+        //update the balance of the sender
+        let getLocalStorageData3 = localStorage.getItem("formData");   
+        listArray3 = JSON.parse(getLocalStorageData3); 
+        console.log(listArray3);
+        objIndex = listArray3.findIndex((obj => obj.Username == usernameHeader.innerHTML));
+        console.log("Before update: ", listArray3[objIndex]);
+        listArray3[objIndex].Amount = totalAmount;
+        console.log("After update: ", listArray3[objIndex]);
+        output.innerHTML = listArray3[objIndex].Amount; 
+        localStorage.setItem('formData', JSON.stringify(listArray3));
+        //update the balance of the receiver
+        let getLocalStorageData4 = localStorage.getItem("formData");   
+        listArray4 = JSON.parse(getLocalStorageData4); 
+        console.log(listArray4);
+        objIndex = listArray4.findIndex((obj => obj.Account_Number == inputAccount.value));
+        console.log("Before update: ", listArray4[objIndex]);
+        listArray4[objIndex].Amount = totalAmount2;
+        console.log("After update: ", listArray4[objIndex]);
+        localStorage.setItem('formData', JSON.stringify(listArray4));
+        document.getElementById('recieverName').innerHTML = '';
+        document.getElementById('sendMoneyForm1').reset();
+        document.getElementById('recieverAccountNumber').focus();
+        e.preventDefault();
+    }
+   
+    //Find index of specific object using findIndex method.
+    
+}
 const deposit = e =>{
     var inputAmount = document.getElementById('depositValue').value;
     var total = document.getElementById('current_money');
@@ -128,26 +191,19 @@ function deleteTask(index){
         displayData();
     }
 }
-
-
-
 //show input form
-
 depositFormBtn.onclick = ()=>{
     gridBoard.style.opacity =".5"
     depositform.style.display ="inline-block"
 }
-
 depositExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     depositform.style.display ="none"
 }
-
 addFormBtn.onclick = ()=>{
     gridBoard.style.opacity =".5"
     expenseform.style.display ="inline-block"
 }
-
 expenseExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     expenseform.style.display ="none"
@@ -156,12 +212,18 @@ withdrawFormBtn.onclick = ()=>{
     gridBoard.style.opacity =".5"
     withdrawform.style.display ="inline-block"
 }
-
 withdrawExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     withdrawform.style.display ="none"
 }
-
+sendMoneyFormBtn.onclick = ()=>{
+    gridBoard.style.opacity =".5"
+    sendMoneyForm.style.display ="inline-block"
+}
+sendMoneyExit.onclick = ()=>{
+    gridBoard.style.opacity ="1"
+    sendMoneyForm.style.display ="none"
+}
 // const trees = [
 //     { name: "birch", count: 4 },
 //     { name: "maple", count: 5 },

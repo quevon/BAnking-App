@@ -30,6 +30,7 @@ checkBox1.onclick = ()=>{
     remember.style.color = "#000"
 }
 
+
 checkBox2.onchange = ()=>{
     let color = agree.style.color = '#777'
     if (color == '#777'){
@@ -53,26 +54,31 @@ loginFormBtn.onclick = ()=>{
 login1.onclick = (a)=>{
     const username = document.getElementById("uname").value;
     const password = document.getElementById("psw").value;
-   
     var data = JSON.parse(localStorage.getItem('formData'));
-    
-    if(username == data[0].Username && password == data[0].Password){
-        window.location.replace("./admin.html");
-    }
-    for(let i = 1;i < data.length;i++){
-        if (username == data[i].Username && password == data[i].Password) {
-            forms.style.display = "none";
-            mainBoard.style.display = "inline-block";
-            usernameHeader.innerHTML = data[i].Username
-            accountNumber.innerText = data[i].Account_Number
-            output.innerHTML = data[i].Amount
-        }else{
-            continue
+    let exist = data.length && 
+    JSON.parse(localStorage.getItem('formData')).some(data1=> data1.Username == document.getElementById("uname").value && data1.Password == document.getElementById("psw").value)
+    if(!exist){
+        alert("Log In Failed!")
+        a.preventDefault();
+    }else if(username == data[0].Username && password == data[0].Password){
+            window.open("./admin.html", "_blank");
+            document.getElementById('loginform').reset();
+            document.getElementById('uname').focus();
+    }else{
+        for(let i = 1;i < data.length;i++){
+            if (username == data[i].Username && password == data[i].Password) {
+                forms.style.display = "none";
+                mainBoard.style.display = "inline-block";
+                usernameHeader.innerHTML = data[i].Username
+                accountNumber.innerText = data[i].Account_Number
+                output.innerHTML = data[i].Amount
+            }  
         }
+        a.preventDefault();
     }
-    
-    a.preventDefault();
 }
+    
+
 function randomnumber(num1,num2){
     return Math.random() * (num2 - num1) + num1;
 }
