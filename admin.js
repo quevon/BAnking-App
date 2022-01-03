@@ -1,25 +1,3 @@
-const search = document.getElementById('search')
-
-search.onkeyup = () =>{
-    let input, filter,table, tr,td,txtValue;
-
-    input = document.getElementById('search');
-    filter = input.value.toUpperCase();
-    table = document.getElementById('myTable');
-    tr = table.getElementsByTagName('tr');
-
-    for(let i = 0; i<tr.length; i++){
-        td=tr[i].getElementsByTagName('td')[0]&&tr[i].getElementsByTagName('td')[1];
-        if(td){
-            txtValue = td.textContent || td.innerText;
-            if(txtValue.toUpperCase().indexOf(filter) > -1){
-                tr[i].style.display = "";
-            }else{
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
 
 window.addEventListener('load' , () => {
   display();
@@ -57,6 +35,33 @@ function deleteTask1(index){
     }
 }
 
+function performSearch() {
+    const search = document.getElementById('search');
+    const table = document.getElementById("myTable");
+    const trs = table.tBodies[0].getElementsByTagName("tr");
+    // Declare search string 
+    var filter = search.value.toUpperCase();
+  
+    // Loop through first tbody's rows
+    for (var rowI = 0; rowI < trs.length; rowI++) {
+      // define the row's cells
+      var tds = trs[rowI].getElementsByTagName("td");
+      // hide the row
+      trs[rowI].style.display = "none";
+      // loop through row cells
+      for (var cellI = 0; cellI < tds.length; cellI++) {
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+          // show the row
+          trs[rowI].style.display = "";
+          // skip to the next row
+          continue;
+        }
+      }
+    }
+  }
+  // add event listener to search box
+  search.addEventListener('keyup', performSearch);
 
 
 

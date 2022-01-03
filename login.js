@@ -17,22 +17,6 @@ const forms = document.getElementById("mainForm")
 const mainBoard = document.getElementById("mainBoard")
 const clear = document.getElementById("clear")
 
-function uncheck() {
-    document.getElementById("payment").checked = false;
-  }
-
-clear.onclick = () =>{
-    document.getElementById('firstname').value = ""
-    document.getElementById('middlename').value = ""
-    document.getElementById('lastname').value = ""
-    document.getElementById('contact').value = ""
-    document.getElementById('email').value = ""
-    document.getElementById('amount').value = ""
-    document.getElementById('username').value = ""
-    document.getElementById('pword').value = ""
-   uncheck()
-}
-
 checkBox.onchange = ()=>{
     let typeAttribute = passwordBox.getAttribute('type');
     if(typeAttribute == 'password'){

@@ -16,6 +16,7 @@ const signUp = e =>{
         });
         localStorage.setItem('formData', JSON.stringify(formData));
         alert("Registered Successfully")
+        document.getElementById('accountNumber').value = (`${parseInt(randomnumber(1000,9999))} ${parseInt(randomnumber1(1000,9999))} ${parseInt(randomnumber2(1000,9999))} ${parseInt(randomnumber3(1000,9999))}`)
         document.getElementById('registerform').reset();
         document.getElementById('firstname').focus();
     }else{
