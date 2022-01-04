@@ -1,45 +1,46 @@
 
-const loginForm = document.getElementById("loginform")
-const regiForm = document.getElementById("registerform")
-const btn = document.getElementById("btn")
-const loginFormBtn = document.getElementById("loginBtn")
-const regiFormBtn = document.getElementById("regiBtn")
-const login1 = document.getElementById("loginBtn1")
-const regi1 = document.getElementById("regiBtn1")
-const passwordBox = document.getElementById("psw")
-const checkBox = document.getElementById("check-box")
-const show = document.getElementById("show")
-const checkBox1 = document.getElementById("check-box1")
-const remember = document.getElementById("remember")
-const checkBox2 = document.getElementById("check-box2")
-const agree = document.getElementById("agree")
-const forms = document.getElementById("mainForm")
-const mainBoard = document.getElementById("mainBoard")
-const clear = document.getElementById("clear")
+const loginForm = document.getElementById("loginform");
+const regiForm = document.getElementById("registerform");
+const btn = document.getElementById("btn");
+const loginFormBtn = document.getElementById("loginBtn");
+const regiFormBtn = document.getElementById("regiBtn");
+const login1 = document.getElementById("loginBtn1");
+const regi1 = document.getElementById("regiBtn1");
+const passwordBox = document.getElementById("psw");
+const showPassword = document.getElementById("show");
+const checkBox1 = document.getElementById("check-box1");
+const remember = document.getElementById("remember");
+const checkBox2 = document.getElementById("check-box2");
+const agree = document.getElementById("agree");
+const forms = document.getElementById("mainForm");
+const mainBoard = document.getElementById("mainBoard");
+const clear = document.getElementById("clear"); 
+const accountName = document.getElementById('accountName');
+const togglePassword = document.getElementById('togglePassword');
 
-checkBox.onchange = ()=>{
-    let typeAttribute = passwordBox.getAttribute('type');
-    if(typeAttribute == 'password'){
-        passwordBox.setAttribute('type','text');
-    }else{
-        passwordBox.setAttribute('type','password');
-    }
+togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = passwordBox.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordBox.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    this.classList.toggle('bi-eye');
+});
+checkBox1.onchange = ()=>{
+    
+    if (checkBox1.checked == true){
+        remember.style.color = "black";
+      } else {
+        remember.style.color = "gray";
+      }
 }
-
-checkBox1.onclick = ()=>{
-    remember.style.color = "#000"
-}
-
-
 checkBox2.onchange = ()=>{
     let color = agree.style.color = '#777'
     if (color == '#777'){
         agree.style.color = "red"
     }else{
-        agree.style.color = '#777'
+        agree.style.color = ''
     }
 }
-
 regiFormBtn.onclick = ()=>{
     loginForm.style.left = "-400px"
     regiForm.style.left = "50px"
@@ -72,13 +73,13 @@ login1.onclick = (a)=>{
                 usernameHeader.innerHTML = data[i].Username
                 accountNumber.innerText = data[i].Account_Number
                 output.innerHTML = data[i].Amount
+                accountName.innerHTML = `${data[i].Firstname} ${data[i].Lastname}`
             }  
         }
         a.preventDefault();
     }
 }
-    
-
+//for generating unique account number
 function randomnumber(num1,num2){
     return Math.random() * (num2 - num1) + num1;
 }

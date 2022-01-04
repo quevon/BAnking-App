@@ -25,11 +25,12 @@ html::-webkit-scrollbar-thumb{
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 7%;
-    /* position: fixed; */
+    position: fixed;
     top: 0; left: 0; right: 0;
-    /* z-index: 1000; */
+    z-index: 1000;
     background: linear-gradient(135deg, #000000, #2d3436);
     border-bottom: var(--border);
+  
    
 }
 .header .logo{
@@ -47,7 +48,7 @@ html::-webkit-scrollbar-thumb{
 
 }
 .header .logo span{
-    color: var(--lightblue);
+    color: lightblue;
 }
 .header .navbar a{
     margin: 0 1rem;
@@ -56,7 +57,7 @@ html::-webkit-scrollbar-thumb{
     text-decoration: none;
 }
 .header .navbar a:hover{
-    color:var(--lightblue);
+    color:lightblue;
     padding-bottom: .5rem;
 
 }
@@ -67,7 +68,7 @@ html::-webkit-scrollbar-thumb{
     margin-left: 2rem;
 }
 .header .icons div:hover{
-    color:var(--lightblue);
+    color:lightblue;
 }
 .table{
   display: flex;
@@ -75,7 +76,7 @@ html::-webkit-scrollbar-thumb{
 }
 .styled-table {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 100px 0 ;
     font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

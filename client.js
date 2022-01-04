@@ -29,7 +29,7 @@ inputAccount.onkeyup = e => {
     console.log(listArray2);
     objIndex = listArray2.findIndex((obj => obj.Account_Number == inputAccount1.value));
 
-    receiverName.innerHTML = listArray2[objIndex].Firstname;
+    receiverName.innerHTML = `${listArray2[objIndex].Firstname} ${listArray2[objIndex].Lastname}`;
     receiverMoney.value = listArray2[objIndex].Amount;
 }
  
@@ -39,9 +39,14 @@ const sendMoney = e =>{
     var receiverMoney = document.getElementById('receiverMoney').value;
     var total = document.getElementById('current_money2');
     var totalbalanceReciever = document.getElementById('receiver_money2');
-    
     var currentBalance = output.innerHTML;
-    if (parseFloat(currentBalance) < parseFloat(inputAmount)){
+    var data = JSON.parse(localStorage.getItem('formData'));
+    let exist = data.length && 
+    JSON.parse(localStorage.getItem('formData')).some(data1=> data1.Account_Number == document.getElementById("recieverAccountNumber").value)
+    if(!exist){
+        alert("Receiver doesn't exist!")
+        e.preventDefault();
+    }else if(parseFloat(currentBalance) < parseFloat(inputAmount)){
         alert("You don't have enough balance!")
         currentBalance
         e.preventDefault();
