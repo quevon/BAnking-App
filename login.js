@@ -68,12 +68,12 @@ login1.onclick = (a)=>{
     }else{
         for(let i = 1;i < data.length;i++){
             if (username == data[i].Username && password == data[i].Password) {
-                forms.style.display = "none";
-                mainBoard.style.display = "inline-block";
-                usernameHeader.innerHTML = data[i].Username
-                accountNumber.innerText = data[i].Account_Number
-                output.innerHTML = data[i].Amount
-                accountName.innerHTML = `${data[i].Firstname} ${data[i].Lastname}`
+                formData3 = JSON.parse(sessionStorage.getItem('formData3')) || [];
+                formData3.push({
+                    Current_User: document.getElementById('uname').value,
+                });
+                localStorage.setItem('formData3', JSON.stringify(formData3));
+                location.replace("./client.html");
             }  
         }
         a.preventDefault();

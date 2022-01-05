@@ -1,45 +1,53 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="client.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="client.css">
     <title>Client</title>
 </head>
 <body>
-    <div class="main-board">
+    <div id="mainBoard" class="main-board">
+        <h1 id="logOut" class="logout">Log Out</h1>
+        <h1 id="usernameHeader"></h1>
+        <h1 id="date"></h1>
         <div id="grid-board" class="grid-container">
             <div class="item1">
-                <div id="unique" class="balance" >asasas</div>
+                <div  class="balance" >₱<span id="currentBalance"></span></div>
+                <div id="account-number" class="account-number"></div>
                 <div class="footer">
-                    <div id="account-number" class="account-number">6353 7863 5274 9817</div>
-                    <div class="visa">Visa</div>
+                    <div id="accountName" class="account-name"></div>
+                    <div class="visa"><i class="fab fa-cc-visa"></i></div>
                 </div>
+               
             </div>
-            <div class="item2" id="item2">
-                <i class="fa fa-plus"></i>
-                <div class="deposit">Deposit</div>
+            <div class="item2" id="depositFormBtn">
+                <img src="./images/arrow.png" >
+                <div class="content deposit">Deposit</div>
             </div>
-            <div class="item3" id="item3">
-                <i class="fas fa-dollar-sign"></i>
-                <div class="save-money">Send Money</div>
+            <div class="item3" id="sendMoneyFormBtn">
+                <img src="./images/money.png" alt="">
+                <div class="content save-money">Send Money</div>
             </div>  
-            <div class="item4" id="item4">
-                <i class="fas fa-minus"></i>
-                <div class="withdraw">Withdraw</div>
+            <div class="item4" id="withdrawFormBtn">
+                <img src="./images/cash-withdrawal.png">
+                <div class="content withdraw">Withdraw</div>
             </div>
-            <div class="item5" id="item5">
-                <i class="fas fa-user-friends"></i>
-                <div class="friends">Friends</div>
+            <div class="item5" id="sendMoneyFormBtn">
+                <img src="./images/money.png" alt="">
+                <div class="content friends">Friends</div>
             </div>
             <div class="item6">
                 <div class="header">Expenses</div>
                 <div class="add-board">
-                    <table class="table">
+                    <table class="table" id="myTable2">
                         <thead>
                             <tr>
+                                <th>Account #</th>
+                                <th>Date</th>
                                 <th>Expenses</th>
                                 <th>Cost</th>
                                 <th>Action</th>
@@ -47,23 +55,59 @@
                         </thead>
                             <tbody>
                                 <!-- local storage -->
-                            <!-- </tbody>
+                            </tbody>
                     </table>
                 </div>
                 <button id="addFormBtn" type="button" class="addBtn">Add Expense</button>
             </div>
          
         </div>
-        <div id ="expenseform" class="expense-box">
-            <i id="exit" class="far fa-window-close"></i>
-             <form id="add-expenses" class="input-group" role="form" onsubmit="addExpense(event);">
-                 <input  id="expense" name = "Item" type="text" class="input-field" placeholder="Enter expense" required>
-                 <input  id="cost" name = "Cost" type="number" class="input-field" placeholder="Enter Cost" required>
-                 <button id="addBtn1" type="submit" class="submit-btn">Add</button> 
-             </form>
-         </div>
+        <section class="background" id ="expenseform">
+            <div  class="expense-box">
+                <i id="exit" class="fa fa-close"></i>
+                <form id="addExpensesForm" class="input-group1" role="form" onsubmit="addExpense(event)">
+                    <input  id="expense" name = "Item" type="text" class="input-field1" placeholder="Enter expense" required>
+                    <input  id="cost" name = "Cost" type="number" class="input-field1" placeholder="Enter Cost" required>
+                    <p class="current_money">Current Balance: <span id ="current_money3"></span></p>
+                    <button id="addBtn1" type="submit" class="add-btn">Add</button> 
+                </form>
+            </div>
+        </section>
+        <section class="background" id="depositform">
+            <div class="deposit-box">
+                <i id="exit1" class="fa fa-close"></i>
+                <form id="depositForm1" role="form" onsubmit="deposit(event)">
+                    <input  id="depositValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <p class="current_money">Current Balance: <span id ="current_money"></span></p>
+                    <button id="depositBtn" type="submit" class="deposit-btn">Deposit</button>
+                </form> 
+            </div>
+        </section>
+        <section class="background" id="withdrawform">
+            <div class="withdraw-box">
+                <i id="exit2" class="fa fa-close"></i>
+                <form id="withdrawform1" role="form" onsubmit="widthDraw(event)">
+                    <input  id="withdrawValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
+                    <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>  
+                </form> 
+            </div>
+        </section>
+        <section class="background" id="sendMoneyForm">
+            <div class="sendMoney-box">
+                <i id="exit3" class="fa fa-close"></i>
+                <form id="sendMoneyForm1" role="form" onsubmit="sendMoney(event)">
+                    <h3 >Account Name:<span id ="recieverName"></span></h3>
+                    <input  id="recieverAccountNumber" name = "Item" type="text" class="input-field1" placeholder="Enter Account #" required>
+                    <input  id="receiverMoney" name = "Item" type="number" class="input-field1 hide" placeholder="Reciever Money" required>
+                    <input  id="sendMoneyValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <p class="current_money">Current Balance: <span id ="current_money2"></span></p>
+                    <p class="current_money hide">Receiver Balance: <span id ="receiver_money2"></span></p>
+                    <button id="sendMoneyBtn" type="submit" class="sendMoney-btn">Send Money</button>  
+                </form> 
+            </div>
+        </section>
     </div>
     <script src="client.js"></script>
-    <script src="login.js"></script>
 </body>
-</html> --> -->
+</html> 

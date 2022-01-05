@@ -7,7 +7,6 @@ const depositform = document.getElementById('depositform');
 const withdrawform = document.getElementById('withdrawform');
 const sendMoneyForm = document.getElementById('sendMoneyForm');
 const add1 = document.getElementById('addBtn1');
-const output = document.getElementById("currentBalance");
 const expenseExit = document.getElementById('exit');
 const depositExit = document.getElementById('exit1');
 const depositBtn = document.getElementById('depositBtn');
@@ -16,8 +15,51 @@ const withdrawBtn = document.getElementById('withdrawBtn');
 const sendMoneyFormBtn = document.getElementById('sendMoneyFormBtn');
 const sendMoneyExit = document.getElementById('exit3');
 const usernameHeader = document.getElementById('usernameHeader');
-const accountNumber = document.getElementById('account-number');
+var accountNumber = document.getElementById('account-number');
+const accountBalance = document.getElementById("currentBalance");
+const accountName = document.getElementById("accountName");
 const inputAccount = document.getElementById('recieverAccountNumber');
+const displayDate = document.getElementById('date');
+const logOut = document.getElementById('logOut');
+const today = new Date();
+const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+
+
+logOut.onclick = () =>{
+    location.replace("./index.html");
+}
+displayDate.innerHTML = date
+window.onload = () =>{
+    let getCurrentUser = localStorage.getItem("formData3")
+    listArray = JSON.parse(getCurrentUser);
+    usernameHeader.innerHTML =  listArray[0].Current_User
+    let getLocalStorageData3 = localStorage.getItem("formData");   
+    listArray3 = JSON.parse(getLocalStorageData3);    
+    objIndex = listArray3.findIndex((obj => obj.Username == usernameHeader.innerHTML));
+    accountNumber.innerHTML = listArray3[objIndex].Account_Number
+    accountBalance.innerHTML = listArray3[objIndex].Amount
+    accountName.innerHTML = `${listArray3[objIndex].Firstname} ${listArray3[objIndex].Lastname}`
+
+    let filter,table,tr
+
+    accountNumber = document.getElementById('account-number');
+    filter = accountNumber.innerHTML;
+    table = document.getElementById('myTable2');
+    tr = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+ 
+}
 
 inputAccount.onkeyup = e => {
     var receiverMoney = document.getElementById('receiverMoney')
@@ -39,7 +81,7 @@ const sendMoney = e =>{
     var receiverMoney = document.getElementById('receiverMoney').value;
     var total = document.getElementById('current_money2');
     var totalbalanceReciever = document.getElementById('receiver_money2');
-    var currentBalance = output.innerHTML;
+    var currentBalance = accountBalance.innerHTML;
     var data = JSON.parse(localStorage.getItem('formData'));
     let exist = data.length && 
     JSON.parse(localStorage.getItem('formData')).some(data1=> data1.Account_Number == document.getElementById("recieverAccountNumber").value)
@@ -63,7 +105,7 @@ const sendMoney = e =>{
         console.log("Before update: ", listArray3[objIndex]);
         listArray3[objIndex].Amount = totalAmount;
         console.log("After update: ", listArray3[objIndex]);
-        output.innerHTML = listArray3[objIndex].Amount; 
+        accountBalance.innerHTML = listArray3[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray3));
         //update the balance of the receiver
         let getLocalStorageData4 = localStorage.getItem("formData");   
@@ -79,17 +121,15 @@ const sendMoney = e =>{
         document.getElementById('recieverAccountNumber').focus();
         e.preventDefault();
     }
-   
-    //Find index of specific object using findIndex method.
-    
+
 }
 const deposit = e =>{
     var inputAmount = document.getElementById('depositValue').value;
     var total = document.getElementById('current_money');
-    var currentBalance = output.innerHTML;
+    var currentBalance = accountBalance.innerHTML;
     var totalAmount = parseFloat(inputAmount) + parseFloat(currentBalance);
     total.innerHTML = totalAmount;
-    //Find index of specific object using findIndex method.
+
     let getLocalStorageData1 = localStorage.getItem("formData");   
     listArray1 = JSON.parse(getLocalStorageData1); 
     console.log(listArray1);
@@ -97,16 +137,17 @@ const deposit = e =>{
     console.log("Before update: ", listArray1[objIndex]);
     listArray1[objIndex].Amount = totalAmount;
     console.log("After update: ", listArray1[objIndex]);
-    output.innerHTML = listArray1[objIndex].Amount; 
+    accountBalance.innerHTML = listArray1[objIndex].Amount; 
     localStorage.setItem('formData', JSON.stringify(listArray1));
     document.getElementById('depositForm1').reset();
     document.getElementById('depositValue').focus();
-    e.preventDefault();
+    alert("Deposit Successful")
+    
 }
 const widthDraw = e =>{
     var inputAmount = document.getElementById('withdrawValue').value;
     var total = document.getElementById('current_money1');
-    var currentBalance = output.innerHTML;
+    var currentBalance = accountBalance.innerHTML;
     if (parseFloat(currentBalance) < parseFloat(inputAmount)){
         alert("You don't have enough balance!")
         currentBalance
@@ -121,79 +162,74 @@ const widthDraw = e =>{
         console.log("Before update: ", listArray2[objIndex]);
         listArray2[objIndex].Amount = totalAmount;
         console.log("After update: ", listArray2[objIndex]);
-        output.innerHTML = listArray2[objIndex].Amount; 
+        accountBalance.innerHTML = listArray2[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray2));
         document.getElementById('withdrawform1').reset();
         document.getElementById('withdrawValue').focus();
-        e.preventDefault();
+        alert("Withdraw Successful")
     }
-   
-    //Find index of specific object using findIndex method.
-    
 }
 const addExpense = e =>{
-    formData1 = JSON.parse(localStorage.getItem('formData1')) || [];
-    formData1.push({
-        Username: document.getElementById('usernameHeader').innerText,
-        Item: document.getElementById('expense').value,
-        Cost: document.getElementById('cost').value,
-    });
-    localStorage.setItem('formData1', JSON.stringify(formData1));
-    displayData();
-    document.getElementById('addExpensesForm').reset();
-    document.getElementById('expense').focus();
-    e.preventDefault();
+    var currentBalance = accountBalance.innerHTML;
+    var cost = document.getElementById('cost').value;
+    var total = document.getElementById('current_money3');
+    if (parseFloat(currentBalance) < parseFloat(cost)){
+        alert("You don't have enough balance!")
+        e.preventDefault();
+    }else{
+        var totalAmount = parseFloat(currentBalance) - parseFloat(cost);
+        total.innerHTML = totalAmount;
+        let getLocalStorageData2 = localStorage.getItem("formData");   
+        listArray2 = JSON.parse(getLocalStorageData2); 
+        console.log(listArray2);
+        objIndex = listArray2.findIndex((obj => obj.Username == usernameHeader.innerHTML));
+        console.log("Before update: ", listArray2[objIndex]);
+        listArray2[objIndex].Amount = totalAmount;
+        console.log("After update: ", listArray2[objIndex]);
+        accountBalance.innerHTML = listArray2[objIndex].Amount; 
+        localStorage.setItem('formData', JSON.stringify(listArray2));
+        formData1 = JSON.parse(localStorage.getItem('formData1')) || [];
+        formData1.push({
+            Account_Number: document.getElementById('account-number').innerText,
+            Date: document.getElementById('date').innerText,
+            Item: document.getElementById('expense').value,
+            Cost:document.getElementById('cost').value,
+        });
+        localStorage.setItem('formData1', JSON.stringify(formData1));
+        document.getElementById('addExpensesForm').reset();
+        document.getElementById('expense').focus();
+        alert("Added expense")
+        window.location.reload()
+    }
 }
-displayData();
 
-let add = document.getElementById('addBtn1')
 function displayData() {
     console.log(localStorage.getItem('formData1'));
     if(localStorage.getItem('formData1')){
 
         var output = document.querySelector('tbody');
-        output.innerHTML = "";
+        accountBalance.innerHTML = "";
         JSON.parse(localStorage.getItem('formData1')).forEach((data,index) => {
             output.innerHTML += `
                     <tr>
-                        <td>${data.Username}</td>
+                        <td>${data.Account_Number}</td>
+                        <td>${data.Date}</td>
                         <td>${data.Item}</td>
                         <td>${data.Cost}</td>
-                        <td><span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span></td>
+                        <td><span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span><span class="icon" onclick="editTask(${index})"><i class="fas fa-pen"></i></span></td>
                     </tr>
             `;
         });
     }
 }
-
-window.onmouseover = () =>{
-    let input, filter,table, tr,td,txtValue;
-
-    input = document.getElementById('usernameHeader');
-    filter = input.innerHTML.toUpperCase();
-    table = document.getElementById('myTable2');
-    tr = table.getElementsByTagName('tr');
-
-
-    for(let i = 0; i<tr.length; i++){
-        td=tr[i].getElementsByTagName('td')[0];
-        if(td){
-            txtValue = td.textContent || td.innerText;
-            if(txtValue.toUpperCase().indexOf(filter) > -1){
-                tr[i].style.display = "";
-            }else{
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
+displayData();
 function deleteTask(index){
     if(confirm("Are you sure you want to delete?")){
         let getLocalStorageData = localStorage.getItem("formData1");
         listArray = JSON.parse(getLocalStorageData);
         listArray.splice(index, 1); //delete or remove the li
         localStorage.setItem("formData1", JSON.stringify(listArray));
-        displayData();
+        window.location.reload()
     }
 }
 //show input form
@@ -229,32 +265,3 @@ sendMoneyExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     sendMoneyForm.style.display ="none"
 }
-// const trees = [
-//     { name: "birch", count: 4 },
-//     { name: "maple", count: 5 },
-//     { name: "oak", count: 2 }
-//   ];
-  
-//   const result = trees.find(tree => tree.name === "oak");
-
-//   console.log(result.name);
-
-//Initailize array of objects.
-// let myArray = [
-//     {id: 0, name: "Jhon"},
-//     {id: 1, name: "Sara"},
-//     {id: 2, name: "Domnic"},
-//     {id: 3, name: "Bravo"}
-//   ],
-      
-//   //Find index of specific object using findIndex method.    
-//   objIndex = myArray.findIndex((obj => obj.id == 1));
-  
-//   //Log object to Console.
-//   console.log("Before update: ", myArray[objIndex])
-  
-//   //Update object's name property.
-//   myArray[objIndex].name = "Laila"
-  
-//   //Log object to console again.
-//   console.log("After update: ", myArray[objIndex])
