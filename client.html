@@ -29,15 +29,15 @@
                 <div class="content deposit">Deposit</div>
             </div>
             <div class="item3" id="sendMoneyFormBtn">
-                <img src="./images/money.png" alt="">
+                <img src="./images/money.png">
                 <div class="content save-money">Send Money</div>
             </div>  
             <div class="item4" id="withdrawFormBtn">
                 <img src="./images/cash-withdrawal.png">
                 <div class="content withdraw">Withdraw</div>
             </div>
-            <div class="item5" id="sendMoneyFormBtn">
-                <img src="./images/transaction.png" alt="">
+            <div class="item5" id="transactionFormBtn">
+                <img src="./images/transaction.png">
                 <div class="content friends">Transaction History</div>
             </div>
             <div class="item6">
@@ -117,6 +117,42 @@
                     <p class="current_money hide">Receiver Balance: <span id ="receiver_money2"></span></p>
                     <button id="sendMoneyBtn" type="submit" class="sendMoney-btn">Send Money</button>  
                 </form> 
+            </div>
+        </section>
+        <section class="background" id="sendMoneyForm">
+            <div class="sendMoney-box">
+                <i id="exit3" class="fa fa-close"></i>
+                <form id="sendMoneyForm1" role="form" onsubmit="sendMoney(event)">
+                    <h3 >Account Name:<span id ="recieverName"></span></h3>
+                    <input  id="recieverAccountNumber" name = "Item" type="text" class="input-field1" placeholder="Enter Account #" required>
+                    <input  id="receiverMoney" name = "Item" type="number" class="input-field1 hide" placeholder="Reciever Money" required>
+                    <input  id="sendMoneyValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <p class="current_money">Current Balance: <span id ="current_money2"></span></p>
+                    <p class="current_money hide">Receiver Balance: <span id ="receiver_money2"></span></p>
+                    <button id="sendMoneyBtn" type="submit" class="sendMoney-btn">Send Money</button>  
+                </form> 
+            </div>
+        </section> <section class="background" id="transactionForm">
+            <div class="transaction-box">
+                <i id="exit5" class="fa fa-close"></i> 
+                <div class="header">Transaction History</div>
+                <div class="box">
+                    <div class="boxHistory deposit-history">
+                        <img src="./images/arrow.png" >
+                        <div class="content">Deposit</div>
+                        <div class="content">History</div>
+                    </div>
+                    <div class="boxHistory withraw-history">
+                        <img src="./images/cash-withdrawal.png">
+                        <div class="content">Withdraw</div>
+                        <div class="content">History</div>
+                    </div>
+                    <div class="boxHistory sentmoney-history">
+                        <img src="./images/money.png">
+                        <div class="content">Sent Money</div>
+                        <div class="content">History</div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

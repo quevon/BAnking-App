@@ -17,8 +17,11 @@ const withdrawExit = document.getElementById('exit2');
 const withdrawBtn = document.getElementById('withdrawBtn');
 const sendMoneyFormBtn = document.getElementById('sendMoneyFormBtn');
 const sendMoneyExit = document.getElementById('exit3');
+const transactionForm = document.getElementById('transactionForm');
+const transactionFormBtn = document.getElementById('transactionFormBtn')
+const transactionExit = document.getElementById('exit5');
 const usernameHeader = document.getElementById('usernameHeader');
-var accountNumber = document.getElementById('account-number');
+const accountNumber = document.getElementById('account-number');
 const accountBalance = document.getElementById("currentBalance");
 const accountName = document.getElementById("accountName");
 const inputAccount = document.getElementById('recieverAccountNumber');
@@ -104,6 +107,18 @@ const sendMoney = e =>{
         total.innerHTML = totalAmount;
         var totalAmount2 = parseFloat(inputAmount) + parseFloat(receiverMoney);
         totalbalanceReciever.innerHTML = totalAmount2;
+
+        sentMoneyData = JSON.parse(localStorage.getItem('sentMoneyData')) || [];
+        sentMoneyData.push({
+            Account_Number: document.getElementById('account-number').innerHTML,
+            Date: date,
+            Time: finalTime,
+            Reciever_Account_No: document.getElementById('recieverAccountNumber').value,
+            Reciever_Account_Name: document.getElementById('recieverName').innerHTML,
+            Sent_Amount: document.getElementById('sendMoneyValue').value,
+            Balance: totalAmounta,
+        });
+        localStorage.setItem('sentMoneyData', JSON.stringify(sentMoneyData));
         //update the balance of the sender
         let getLocalStorageData3 = localStorage.getItem("formData");   
         listArray3 = JSON.parse(getLocalStorageData3); 
@@ -166,6 +181,17 @@ const widthDraw = e =>{
     }else{
         var totalAmount = parseFloat(currentBalance) - parseFloat(inputAmount);
         total.innerHTML = totalAmount;
+
+        withdrawData = JSON.parse(localStorage.getItem('withdrawData')) || [];
+        withdrawData.push({
+            Account_Number: document.getElementById('account-number').innerHTML,
+            Date: date,
+            Time: finalTime,
+            Withdraw_Amount: document.getElementById('withdrawValue').value,
+            Balance: totalAmount,
+        });
+
+        localStorage.setItem('withdrawData', JSON.stringify(withdrawData));
         let getLocalStorageData2 = localStorage.getItem("formData");   
         listArray2 = JSON.parse(getLocalStorageData2); 
         console.log(listArray2);
@@ -302,4 +328,12 @@ sendMoneyFormBtn.onclick = ()=>{
 sendMoneyExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     sendMoneyForm.style.display ="none"
+}
+transactionFormBtn.onclick = ()=>{
+    gridBoard.style.opacity =".5"
+    transactionForm.style.display ="inline-block"
+}
+transactionExit.onclick = ()=>{
+    gridBoard.style.opacity ="1"
+    transactionForm.style.display ="none"
 }

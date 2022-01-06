@@ -122,7 +122,7 @@ section form .current_money{
 }
 .table td,
 .table th{
-    padding: 15px 45px;
+    padding: 15px 30px;
     text-align: left;
     font-size: 12px;
     
@@ -167,6 +167,9 @@ section form .current_money{
 #sendMoneyForm{
     display: none;
 }
+#transactionForm{
+    display: none;
+}
 .content{
     font-size: 15px;
 } 
@@ -183,10 +186,9 @@ section form .current_money{
     padding: 20px 0;
     font-size: 1rem;
     box-shadow:  0 0 20px 9px #ff61241f;
-    border-radius: 30px;
+    border-radius: 20px;
     cursor: pointer;
-    top: 0;
-    transition: 1s;
+    top: 0
 }
 .expense-box{
     width: 380px;
@@ -203,7 +205,6 @@ section form .current_money{
     border-radius: 30px;
     cursor: pointer;
     top: 0;
-    transition: 1s;
 }
 .sendMoney-box{
     width: 380px;
@@ -217,10 +218,47 @@ section form .current_money{
     padding: 20px 0;
     font-size: 1rem;
     box-shadow:  0 0 20px 9px #ff61241f;
-    border-radius: 30px;
+    border-radius: 20px;
     cursor: pointer;
     top: 0;
+}
+.transaction-box{
+    width: 380px;
+    height: 48%;
+    position: absolute;
+    margin: 10% auto 0 35%;
+    background: #fff;
+    padding: 5px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    box-shadow:  0 0 20px 9px #ff61241f;
+    border-radius: 20px;
+    cursor: pointer;
+    top: 0;
+}
+.transaction-box .header{
+    font-size: 2rem;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    margin: 10% auto;
+    width: 100%;
+}
+.boxHistory{
+    padding: 15px;
+}
+.boxHistory img{
+    height: 5rem;
+    width: 5rem;
+    cursor: pointer;
     transition: 1s;
+}
+.boxHistory img:hover{
+    background: red;
+    border-radius: 50%;
 }
 .fa-close{
     display: flex;
@@ -261,6 +299,7 @@ section form .current_money{
     border-radius: 30px;
     margin-top: 10px;
 }
+
 .icon{
     cursor: pointer;
     padding-right: 10px;
