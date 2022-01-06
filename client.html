@@ -15,7 +15,7 @@
         <h1 id="usernameHeader"></h1>
         <h1 id="date"></h1>
         <div id="grid-board" class="grid-container">
-            <div class="item1">
+            <div class="item1" id="cardForm">
                 <div  class="balance" >₱<span id="currentBalance"></span></div>
                 <div id="account-number" class="account-number"></div>
                 <div class="footer">
@@ -70,6 +70,19 @@
                     <input  id="cost" name = "Cost" type="number" class="input-field1" placeholder="Enter Cost" required>
                     <p class="current_money">Current Balance: <span id ="current_money3"></span></p>
                     <button id="addBtn1" type="submit" class="add-btn">Add</button> 
+                </form>
+            </div>
+        </section>
+        <section class="background" id ="expenseformEdit">
+            <div  class="expense-box edit">
+                <i id="exit4" class="fa fa-close"></i>
+                <h1 id="itemIndex"></h1>
+                <!-- onsubmit="editExpense(event) -->
+                <form id="addExpensesFormEdit" class="input-group1" role="form" >
+                    <input  id="editExpense" name = "Item1" type="text" class="input-field1" placeholder="Enter expense" required>
+                    <input  id="editCost" name = "Cost1" type="number" class="input-field1" placeholder="Enter Cost" required>
+                    <p class="current_money4">Current Balance: <span id ="current_money3"></span></p>
+                    <button id="editBtn" type="submit" class="add-btn" onclick="editRow(event)">Save</button> 
                 </form>
             </div>
         </section>

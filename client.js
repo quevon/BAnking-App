@@ -3,6 +3,9 @@ const depositFormBtn = document.getElementById('depositFormBtn');
 const withdrawFormBtn = document.getElementById('withdrawFormBtn');
 const gridBoard = document.getElementById('grid-board');
 const expenseform = document.getElementById('expenseform');
+const addExpensesFormEdit = document.getElementById('addExpensesFormEdit')
+const editFormExit = document.getElementById('exit4')
+const expenseformEdit = document.getElementById('expenseformEdit')
 const depositform = document.getElementById('depositform');
 const withdrawform = document.getElementById('withdrawform');
 const sendMoneyForm = document.getElementById('sendMoneyForm');
@@ -119,7 +122,7 @@ const sendMoney = e =>{
         document.getElementById('recieverName').innerHTML = '';
         document.getElementById('sendMoneyForm1').reset();
         document.getElementById('recieverAccountNumber').focus();
-        e.preventDefault();
+        alert("Send Successfully!")
     }
 
 }
@@ -159,10 +162,7 @@ const widthDraw = e =>{
         listArray2 = JSON.parse(getLocalStorageData2); 
         console.log(listArray2);
         objIndex = listArray2.findIndex((obj => obj.Username == usernameHeader.innerHTML));
-        console.log("Before update: ", listArray2[objIndex]);
         listArray2[objIndex].Amount = totalAmount;
-        console.log("After update: ", listArray2[objIndex]);
-        accountBalance.innerHTML = listArray2[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray2));
         document.getElementById('withdrawform1').reset();
         document.getElementById('withdrawValue').focus();
@@ -216,7 +216,7 @@ function displayData() {
                         <td>${data.Date}</td>
                         <td>${data.Item}</td>
                         <td>${data.Cost}</td>
-                        <td><span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span><span class="icon" onclick="editTask(${index})"><i class="fas fa-pen"></i></span></td>
+                        <td><span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span><span class="icon" onclick="editTask()"><i class="fas fa-pen"></i></span></td>
                     </tr>
             `;
         });
@@ -231,6 +231,37 @@ function deleteTask(index){
         localStorage.setItem("formData1", JSON.stringify(listArray));
         window.location.reload()
     }
+}
+
+var table = document.getElementById('myTable2'),rIndex;
+
+for(var i = 0; i < table.rows.length;i++){
+    table.rows[i].onclick = function(){
+    rIndex = this.rowIndex;
+    document.getElementById('editExpense').value = this.cells[2].innerHTML;
+    document.getElementById('itemIndex').innerHTML = this.cells[2].innerHTML;
+    document.getElementById('editCost').value = this.cells[3].innerHTML;
+};
+}
+
+function editTask(){
+    gridBoard.style.opacity =".5"
+    expenseformEdit.style.display ="inline-block"
+}
+function editRow(e){
+    var newExpenseName = document.getElementById('editExpense').value;
+    var newCost = document.getElementById('editCost').value;
+    var indexofrows = document.getElementById('itemIndex').innerHTML;
+    let getLocalStorageData2 = localStorage.getItem("formData1");   
+    listArray2 = JSON.parse(getLocalStorageData2); 
+    objIndex = listArray2.findIndex((obj => obj.Item ==  indexofrows));
+    listArray2[objIndex].Item = newExpenseName
+    listArray2[objIndex].Cost = newCost
+    localStorage.setItem('formData1', JSON.stringify(listArray2)) 
+}
+editFormExit.onclick = () =>{
+    gridBoard.style.opacity ="1"
+    expenseformEdit.style.display ="none"
 }
 //show input form
 depositFormBtn.onclick = ()=>{

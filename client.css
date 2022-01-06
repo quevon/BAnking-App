@@ -27,6 +27,7 @@ html{
     background-position: center;
     background-size: cover;
     position: absolute;
+    overflow: hidden;
 }
 .grid-container {
     display: grid;
@@ -34,12 +35,11 @@ html{
     grid-gap: 8px;
     width: 70%;
     height: 80%;
-    margin: 2% auto;
+    margin: 1% auto;
     position: relative;
     padding: 10px;
     opacity: 1;
 }
-  
 .grid-container > div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
@@ -115,11 +115,14 @@ html{
     background:  linear-gradient(to right, #ff105f,#ffad06);
     color: #ffffff;
     text-align: left;
+    
 }
 .table td,
 .table th{
-    padding: 15px 50px;
+    padding: 15px 45px;
     text-align: left;
+    font-size: 12px;
+    
 }
 .table tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -147,6 +150,9 @@ html{
     position: absolute;
 }
 #expenseform{
+    display: none;
+}
+#expenseformEdit{
     display: none;
 }
 #depositform{
@@ -181,7 +187,7 @@ html{
 }
 .expense-box{
     width: 380px;
-    height: 210px;
+    height: 230px;
     position: absolute;
     margin: 10% auto 0 35%;
     background: #fff;
@@ -271,9 +277,7 @@ html{
 #usernameHeader{
     display: none;
 }
-#amount{
-    display: none;
-}
+
 .hide{
     display: none;
 }
