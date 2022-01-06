@@ -37,8 +37,8 @@
                 <div class="content withdraw">Withdraw</div>
             </div>
             <div class="item5" id="sendMoneyFormBtn">
-                <img src="./images/money.png" alt="">
-                <div class="content friends">Friends</div>
+                <img src="./images/transaction.png" alt="">
+                <div class="content friends">Transaction History</div>
             </div>
             <div class="item6">
                 <div class="header">Expenses</div>
@@ -77,11 +77,10 @@
             <div  class="expense-box edit">
                 <i id="exit4" class="fa fa-close"></i>
                 <h1 id="itemIndex"></h1>
-                <!-- onsubmit="editExpense(event) -->
                 <form id="addExpensesFormEdit" class="input-group1" role="form" >
                     <input  id="editExpense" name = "Item1" type="text" class="input-field1" placeholder="Enter expense" required>
                     <input  id="editCost" name = "Cost1" type="number" class="input-field1" placeholder="Enter Cost" required>
-                    <p class="current_money4">Current Balance: <span id ="current_money3"></span></p>
+                    <p class="current_money">Current Balance: <span id ="current_money3"></span></p>
                     <button id="editBtn" type="submit" class="add-btn" onclick="editRow(event)">Save</button> 
                 </form>
             </div>

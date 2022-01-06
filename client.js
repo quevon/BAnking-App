@@ -26,7 +26,12 @@ const displayDate = document.getElementById('date');
 const logOut = document.getElementById('logOut');
 const today = new Date();
 const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
-
+var dt = new Date();
+var hours = dt.getHours() ; // gives the value in 24 hours format
+var AmOrPm = hours >= 12 ? 'pm' : 'am';
+hours = (hours % 12) || 12;
+var minutes = dt.getMinutes() ;
+var finalTime = hours + ":" + minutes + " " + AmOrPm; 
 
 logOut.onclick = () =>{
     location.replace("./index.html");
@@ -45,7 +50,6 @@ window.onload = () =>{
 
     let filter,table,tr
 
-    accountNumber = document.getElementById('account-number');
     filter = accountNumber.innerHTML;
     table = document.getElementById('myTable2');
     tr = table.getElementsByTagName('tr');
@@ -63,7 +67,7 @@ window.onload = () =>{
     }
  
 }
-
+//send money
 inputAccount.onkeyup = e => {
     var receiverMoney = document.getElementById('receiverMoney')
     var inputAccount1 = document.getElementById('recieverAccountNumber');
@@ -105,27 +109,23 @@ const sendMoney = e =>{
         listArray3 = JSON.parse(getLocalStorageData3); 
         console.log(listArray3);
         objIndex = listArray3.findIndex((obj => obj.Username == usernameHeader.innerHTML));
-        console.log("Before update: ", listArray3[objIndex]);
         listArray3[objIndex].Amount = totalAmount;
-        console.log("After update: ", listArray3[objIndex]);
-        accountBalance.innerHTML = listArray3[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray3));
         //update the balance of the receiver
         let getLocalStorageData4 = localStorage.getItem("formData");   
         listArray4 = JSON.parse(getLocalStorageData4); 
         console.log(listArray4);
         objIndex = listArray4.findIndex((obj => obj.Account_Number == inputAccount.value));
-        console.log("Before update: ", listArray4[objIndex]);
         listArray4[objIndex].Amount = totalAmount2;
-        console.log("After update: ", listArray4[objIndex]);
         localStorage.setItem('formData', JSON.stringify(listArray4));
         document.getElementById('recieverName').innerHTML = '';
         document.getElementById('sendMoneyForm1').reset();
         document.getElementById('recieverAccountNumber').focus();
-        alert("Send Successfully!")
+        alert("Sent Successfully!")
     }
 
 }
+//deposit
 const deposit = e =>{
     var inputAmount = document.getElementById('depositValue').value;
     var total = document.getElementById('current_money');
@@ -133,15 +133,23 @@ const deposit = e =>{
     var totalAmount = parseFloat(inputAmount) + parseFloat(currentBalance);
     total.innerHTML = totalAmount;
 
+    depositData = JSON.parse(localStorage.getItem('depositData')) || [];
+    depositData.push({
+        Account_Number: document.getElementById('account-number').innerHTML,
+        Date: date,
+        Time: finalTime,
+        Deposit_Amount: document.getElementById('depositValue').value,
+        Balance: totalAmount,
+    });
+    localStorage.setItem('depositData', JSON.stringify(depositData));
+
     let getLocalStorageData1 = localStorage.getItem("formData");   
     listArray1 = JSON.parse(getLocalStorageData1); 
     console.log(listArray1);
     objIndex = listArray1.findIndex((obj => obj.Username == usernameHeader.innerHTML));
-    console.log("Before update: ", listArray1[objIndex]);
-    listArray1[objIndex].Amount = totalAmount;
-    console.log("After update: ", listArray1[objIndex]);
-    accountBalance.innerHTML = listArray1[objIndex].Amount; 
+    listArray1[objIndex].Amount = totalAmount; 
     localStorage.setItem('formData', JSON.stringify(listArray1));
+    
     document.getElementById('depositForm1').reset();
     document.getElementById('depositValue').focus();
     alert("Deposit Successful")
@@ -183,9 +191,7 @@ const addExpense = e =>{
         listArray2 = JSON.parse(getLocalStorageData2); 
         console.log(listArray2);
         objIndex = listArray2.findIndex((obj => obj.Username == usernameHeader.innerHTML));
-        console.log("Before update: ", listArray2[objIndex]);
         listArray2[objIndex].Amount = totalAmount;
-        console.log("After update: ", listArray2[objIndex]);
         accountBalance.innerHTML = listArray2[objIndex].Amount; 
         localStorage.setItem('formData', JSON.stringify(listArray2));
         formData1 = JSON.parse(localStorage.getItem('formData1')) || [];
@@ -225,6 +231,7 @@ function displayData() {
 displayData();
 function deleteTask(index){
     if(confirm("Are you sure you want to delete?")){
+
         let getLocalStorageData = localStorage.getItem("formData1");
         listArray = JSON.parse(getLocalStorageData);
         listArray.splice(index, 1); //delete or remove the li

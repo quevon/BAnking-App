@@ -52,6 +52,9 @@ html{
 .grid-container img{
     height: 30px;
 }
+section form .current_money{
+    display: none;
+}
 .item2:hover,
 .item3:hover,
 .item4:hover,
