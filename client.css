@@ -20,6 +20,54 @@ html{
     background: linear-gradient(to bottom, #ff105f,#ffad06);
     border-radius: 5rem;
 }
+.fa-bars{
+    padding: 10px 12px 10px 12px;
+    margin: 10px auto;
+    font-size: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.fa-bars:hover{
+    background: gray;
+}
+.side-bar{
+    top: 0;
+    height: 100%;
+    width: 20%;
+    background: #202020;
+    position: absolute;
+    left: -232px;
+    z-index: 1000;
+    transition: 1s;
+}
+nav .fa-bars{
+    padding: 10px 12px 10px 12px;
+    font-size: 2rem;
+    border-radius: 50%;
+    -webkit-text-stroke: 2px #202020;
+    cursor: pointer;
+    margin: 10px auto 10px 10px;
+    transition: 1s;
+}
+nav .fa-bars:hover{
+    background: gray;
+}
+nav ul li{
+   display:block;
+}
+nav ul li a{
+    cursor: pointer;
+    padding: 10px 62% 10px 20px;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    color: #FFFEFA;
+    text-decoration: none;
+}
+nav ul li:hover a{
+    background: gray;
+}
 .main-board{
     height: 100%;
     width: 100%;
@@ -35,7 +83,7 @@ html{
     grid-gap: 8px;
     width: 70%;
     height: 80%;
-    margin: 1% auto;
+    margin: 0 auto;
     position: relative;
     padding: 10px;
     opacity: 1;
@@ -173,6 +221,15 @@ section form .current_money{
 .content{
     font-size: 15px;
 } 
+#depositTable{
+    display: none;
+}
+#withdrawTable{
+    display: none;
+}
+#sentMoneyTable{
+    display: none;
+}
 .deposit-box,
 .withdraw-box{
     width: 380px;
@@ -260,6 +317,89 @@ section form .current_money{
     background: red;
     border-radius: 50%;
 }
+/* transaction history tables styling */
+.backgroundTables{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background: transparent;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.history-box{
+    height: 80%;
+    width: 100%;
+    overflow-x: hidden;
+}
+.deposit-box-history,
+.withdraw-box-history{
+    width: 50%;
+    height: 60%;
+    position: absolute;
+    margin: 10% auto;
+    background: #fff;
+    padding: 5px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    box-shadow:  0 0 20px 9px #ff61241f;
+    border-radius: 20px;
+    cursor: pointer;
+    left: 25%;
+    
+}
+.sentMoney-box-history{
+    width: 70%;
+    height: 60%;
+    position: absolute;
+    margin: 10% auto;
+    background: #fff;
+    padding: 5px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    box-shadow:  0 0 20px 9px #ff61241f;
+    border-radius: 20px;
+    cursor: pointer;
+    left: 15%;
+}
+.deposit-box-history .table,
+.withdraw-box-history .table,
+.sentMoney-box-history .table{
+    display: flex;
+    justify-content: center;
+}
+.deposit-box-history .styled-table,
+.withdraw-box-history .styled-table,
+.sentMoney-box-history .styled-table {
+    border-collapse: collapse;
+    margin: 10px 0 ;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.deposit-box-history .styled-table thead tr,
+.withdraw-box-history .styled-table thead tr,
+.sentMoney-box-history .styled-table thead tr{
+    background:  linear-gradient(to right, #ff105f,#ffad06);
+    color: #ffffff;
+    text-align: left;
+}
+.deposit-box-history .styled-table th,
+.deposit-box-history .styled-table td,
+.withdraw-box-history .styled-table th,
+.withdraw-box-history .styled-table td,
+.sentMoney-box-history .styled-table th,
+.sentMoney-box-history .styled-table td {
+    padding: 12px 15px;
+}
+.deposit-box-history .styled-table tbody tr,
+.withdraw-box-history .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
 .fa-close{
     display: flex;
     justify-content: end;
@@ -307,12 +447,7 @@ section form .current_money{
 .icon:hover{
     color: crimson;
 }
-.logout{
-    cursor: pointer;
-}
-.logout:hover{
-    color: red;
-}
+
 #date{
     display: none;
 }

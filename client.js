@@ -25,6 +25,18 @@ const accountNumber = document.getElementById('account-number');
 const accountBalance = document.getElementById("currentBalance");
 const accountName = document.getElementById("accountName");
 const inputAccount = document.getElementById('recieverAccountNumber');
+const depositShowHistory = document.getElementById('depositShowHistory')
+const withdrawShowHistory = document.getElementById('withdrawShowHistory');
+const sentMoneyShowHistory = document.getElementById('sentMoneyShowHistory');
+const depositTable = document.getElementById('depositTable');
+const depositExitHistory = document.getElementById('exit6')
+const withdrawTable = document.getElementById('withdrawTable');
+const withdrawExitHistory = document.getElementById('exit7')
+const sentMoneyTable = document.getElementById('sentMoneyTable');
+const sentMoneyExitHistory = document.getElementById('exit8');
+const menu_bar = document.getElementById('menu-bar');
+const menu_bar1 = document.getElementById('menu-bar1');
+const sideBar = document.getElementById('sideBar');
 const displayDate = document.getElementById('date');
 const logOut = document.getElementById('logOut');
 const today = new Date();
@@ -36,11 +48,15 @@ hours = (hours % 12) || 12;
 var minutes = dt.getMinutes() ;
 var finalTime = hours + ":" + minutes + " " + AmOrPm; 
 
-logOut.onclick = () =>{
-    location.replace("./index.html");
+menu_bar1.onclick = () =>{
+    sideBar.style.left = "0"
+}
+menu_bar.onclick = () =>{
+    sideBar.style.left = "-232px"
 }
 displayDate.innerHTML = date
 window.onload = () =>{
+    
     let getCurrentUser = localStorage.getItem("formData3")
     listArray = JSON.parse(getCurrentUser);
     usernameHeader.innerHTML =  listArray[0].Current_User
@@ -70,6 +86,7 @@ window.onload = () =>{
     }
  
 }
+
 //send money
 inputAccount.onkeyup = e => {
     var receiverMoney = document.getElementById('receiverMoney')
@@ -336,4 +353,132 @@ transactionFormBtn.onclick = ()=>{
 transactionExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     transactionForm.style.display ="none"
+}
+depositShowHistory.onclick = ()=>{
+    depositTable.style.display ="inline-block"
+    displayDepositHistory()
+    let filter,table,tr
+
+    filter = accountNumber.innerHTML;
+    table = document.getElementById('depositTableHistory');
+    tr = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+depositExitHistory.onclick  = ()=>{
+    depositTable.style.display = "none"
+}
+sentMoneyShowHistory.onclick = ()=>{
+    sentMoneyTable.style.display = "inline-block"
+    sentMoneyDisplayHistory();
+    let filter,table,tr
+
+    filter = accountNumber.innerHTML;
+    table = document.getElementById('sentMoneyTableHistory');
+    tr = table.getElementsByTagName('tr');
+    for (let i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+sentMoneyExitHistory.onclick  = ()=>{
+    sentMoneyTable.style.display = "none"
+}
+withdrawShowHistory.onclick = ()=>{
+    withdrawTable.style.display ="inline-block"
+    withdrawDisplayHistory();
+    let filter,table,tr
+
+    filter = accountNumber.innerHTML;
+    table = document.getElementById('withdrawTableHistory');
+    tr = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+withdrawExitHistory.onclick  = ()=>{
+    withdrawTable.style.display = "none"
+}
+
+function displayDepositHistory(){
+    console.log(localStorage.getItem('depositData'));
+    if(localStorage.getItem('depositData')){
+        var output = document.getElementById('depositBody');
+        output.innerHTML = "";
+        JSON.parse(localStorage.getItem('depositData')).forEach(data => {
+            output.innerHTML += `
+                    <tr>
+                        <td>${data.Account_Number}</td>
+                        <td>${data.Date}</td>
+                        <td>${data.Time}</td>
+                        <td>${data.Deposit_Amount}</td>
+                        <td>${data.Balance}</td>
+                    </tr>
+            `;
+        });
+    }
+}
+function withdrawDisplayHistory(){
+    console.log(localStorage.getItem('withdrawData'));
+    if(localStorage.getItem('withdrawData')){
+        var output = document.getElementById('withdrawBody');
+        output.innerHTML = "";
+        JSON.parse(localStorage.getItem('withdrawData')).forEach(data => {
+            output.innerHTML += `
+                    <tr>
+                        <td>${data.Account_Number}</td>
+                        <td>${data.Date}</td>
+                        <td>${data.Time}</td>
+                        <td>${data.Withdraw_Amount}</td>
+                        <td>${data.Balance}</td>
+                    </tr>
+            `;
+        });
+    }
+}
+function sentMoneyDisplayHistory(){
+    console.log(localStorage.getItem('sentMoneyData'));
+    if(localStorage.getItem('sentMoneyData')){
+        var output = document.getElementById('sentMoneyBody');
+        output.innerHTML = "";
+        JSON.parse(localStorage.getItem('sentMoneyData')).forEach(data => {
+            output.innerHTML += `
+                    <tr>
+                        <td>${data.Account_Number}</td>
+                        <td>${data.Date}</td>
+                        <td>${data.Time}</td>
+                        <td>${data.Reciever_Account_Name}</td>
+                        <td>${data.Reciever_Account_Name}</td>
+                        <td>${data.Sent_Amount}</td>
+                        <td>${data.Balance}</td>
+                    </tr>
+            `;
+        });
+    }
 }

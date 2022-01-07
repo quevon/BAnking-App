@@ -10,8 +10,18 @@
     <title>Client</title>
 </head>
 <body>
+    
     <div id="mainBoard" class="main-board">
-        <h1 id="logOut" class="logout">Log Out</h1>
+        <li><i class="fas fa-bars" id="menu-bar1"></i></li>
+        <div class="side-bar" id="sideBar">
+            <nav>
+                <ul>
+                    <li><i class="fas fa-bars" id="menu-bar"></i></li>
+                    <li><a href="./index.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+                </ul>
+            </nav>
+        </div>
+       
         <h1 id="usernameHeader"></h1>
         <h1 id="date"></h1>
         <div id="grid-board" class="grid-container">
@@ -53,7 +63,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                            <tbody>
+                            <tbody id="expensesBody">
                                 <!-- local storage -->
                             </tbody>
                     </table>
@@ -132,30 +142,109 @@
                     <button id="sendMoneyBtn" type="submit" class="sendMoney-btn">Send Money</button>  
                 </form> 
             </div>
-        </section> <section class="background" id="transactionForm">
+        </section> 
+        <section class="background" id="transactionForm">
             <div class="transaction-box">
                 <i id="exit5" class="fa fa-close"></i> 
                 <div class="header">Transaction History</div>
                 <div class="box">
                     <div class="boxHistory deposit-history">
-                        <img src="./images/arrow.png" >
+                        <img id="depositShowHistory" src="./images/arrow.png" >
                         <div class="content">Deposit</div>
                         <div class="content">History</div>
                     </div>
                     <div class="boxHistory withraw-history">
-                        <img src="./images/cash-withdrawal.png">
+                        <img id="withdrawShowHistory" src="./images/cash-withdrawal.png">
                         <div class="content">Withdraw</div>
                         <div class="content">History</div>
                     </div>
                     <div class="boxHistory sentmoney-history">
-                        <img src="./images/money.png">
+                        <img id="sentMoneyShowHistory"src="./images/money.png">
                         <div class="content">Sent Money</div>
                         <div class="content">History</div>
                     </div>
                 </div>
             </div>
         </section>
+       <section class="backgroundTables" id="depositTable">
+            <div class="deposit-box-history">
+                <i id="exit6" class="fa fa-close"></i> 
+                <h1>Deposit History</h1>
+                <div class="history-box">
+                    <div id="output" class="table">
+                        <table class="styled-table" id="depositTableHistory">
+                            <thead>
+                                <tr>
+                                    <th>Account #</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Deposit Amount</th>
+                                    <th>Balance</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="depositBody">
+                                <!-- local storage -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="backgroundTables" id="withdrawTable">
+            <div class="withdraw-box-history">
+                <i id="exit7" class="fa fa-close"></i> 
+                <h1>Withdraw History</h1>
+                <div class="history-box">
+                    <div id="output" class="table">
+                        <table class="styled-table" id="withdrawTableHistory">
+                            <thead>
+                                <tr>
+                                    <th>Account #</th>   
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Withdraw Amount</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="withdrawBody">
+                                <!-- local storage -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="backgroundTables" id="sentMoneyTable">
+            <div class="sentMoney-box-history">
+                <i id="exit8" class="fa fa-close"></i> 
+                <h1>Sent Money History</h1>
+                <div class="history-box">
+                    <div id="output" class="table">
+                        <table class="styled-table" id="sentMoneyTableHistory">
+                            <thead>
+                                <tr>
+                                    <th>Account #</th>   
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Reciever Name</th>
+                                    <th>Reciever Account #</th>
+                                    <th>Sent Amount</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sentMoneyBody">
+                                <!-- local storage -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
     </div>
     <script src="client.js"></script>
+
+
 </body>
 </html> 
