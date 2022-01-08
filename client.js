@@ -275,6 +275,7 @@ for(var i = 0; i < table.rows.length;i++){
     document.getElementById('editExpense').value = this.cells[2].innerHTML;
     document.getElementById('itemIndex').innerHTML = this.cells[2].innerHTML;
     document.getElementById('editCost').value = this.cells[3].innerHTML;
+    document.getElementById('itemCost').innerHTML = this.cells[3].innerHTML;
 };
 }
 function editTask(){
@@ -294,20 +295,35 @@ function deleteTask(index){
 function editRow(e){
     var newExpenseName = document.getElementById('editExpense').value;
     var newCost = document.getElementById('editCost').value;
-
+    var itemCost = document.getElementById('itemCost').innerHTML;
+    var newItemCost = parseFloat(itemCost) - parseFloat(newCost);
+    var newBalance = parseFloat(accountBalance.innerText) + parseFloat(newItemCost);
     var indexofrows = document.getElementById('itemIndex').innerHTML;
-    let getLocalStorageData2 = localStorage.getItem("formData1");   
-    listArray2 = JSON.parse(getLocalStorageData2); 
-    objIndex = listArray2.findIndex((obj => obj.Item ==  indexofrows));
-    listArray2[objIndex].Item = newExpenseName
-    listArray2[objIndex].Cost = newCost
-    localStorage.setItem('formData1', JSON.stringify(listArray2)) 
+    
+    if(parseFloat(accountBalance.innerText) < parseFloat(newCost)){
+        alert("You don't have enough balance!")
+        e.preventDefault();
+    }else{
+        let getLocalStorageData2 = localStorage.getItem("formData1");   
+        listArray2 = JSON.parse(getLocalStorageData2); 
+        objIndex = listArray2.findIndex((obj => obj.Item ==  indexofrows));
+        listArray2[objIndex].Item = newExpenseName
+        listArray2[objIndex].Cost = newCost
+        localStorage.setItem('formData1', JSON.stringify(listArray2)) 
+    
+        let getLocalStorageData = localStorage.getItem("formData");   
+        listArray = JSON.parse(getLocalStorageData); 
+        objIndex1 = listArray.findIndex((obj => obj.Account_Number == accountNumber.innerText));
+        listArray[objIndex1].Amount = newBalance
+        localStorage.setItem('formData', JSON.stringify(listArray)) 
+    }
+    
 }
 editFormExit.onclick = () =>{
     gridBoard.style.opacity ="1"
     expenseformEdit.style.display ="none"
 }
-//show input form
+//modals
 depositFormBtn.onclick = ()=>{
     gridBoard.style.opacity =".5"
     depositform.style.display ="inline-block"
