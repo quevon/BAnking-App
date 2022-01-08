@@ -5,43 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">
-            <img src="images/logohealthcare.png" alt="">
-            <h3>Admin Page</h3>
-        </a>
-
-        <nav class="navbar">
-            <a href="index.html">Logout</a>
-            <a href="#">Change Password</a>
-        </nav>
-        <div class="search">
-            <input type="text" placeholder="search here.." id="search">
+    <div class="main-board">
+        <li><i class="fas fa-bars" id="menu-bar1"></i></li>
+        <div class="side-bar" id="sideBar">
+            <nav>
+                <ul>
+                    <li><i class="fas fa-bars" id="menu-bar"></i></li>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Admin Profile</span></a></div></li>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-question" id="about"></i><span>Help</span></div></a>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-cog" id="about"></i><span>Settings</span></div></a>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-info" ></i><span>About Us</span></div></a><i class=""></i>
+                    <li><div class="backgroundNav"><a href="./index.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></div></li>
+                </ul>
+            </nav>
         </div>
-    </header>
-    <div id="output" class="table">
-        <table class="styled-table" id="myTable">
-            <thead>
-                <tr>
-                    <th>Account #</th>
-                    <th>Firstname</th>
-                    <th>Middlename</th>
-                    <th>Lastname</th>
-                    <th>Contact</th>
-                    <th>Email</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- local storage -->
-            </tbody>
-        </table>
+        <div class="all-board">
+            <div class="search">
+                <input type="text" placeholder="search here.." id="search"><span><i class="fas fa-search"></i></span>
+            </div>
+            <div id="output" class="table">
+                <table class="styled-table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Account #</th>
+                            <th>Firstname</th>
+                            <th>Middlename</th>
+                            <th>Lastname</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- local storage -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       <div class="user-info-board" id="user-info-board">
+            <div class="user-info-box">
+                <i id="exit" class="fa fa-close"></i>
+                <div class="user-profilepic">
+                    <i class="fas fa-user" id="profile"></i>
+                </div>
+                 <ul>
+                    <li><label for="">Account Number:</label><span id="accountNumber"></span></li>
+                    <li><label for="">Firstname:</label><span id="firstName"></span></li>
+                    <li><label for="">Middlename:</label><span id ="middleName"></span></li>
+                    <li><label for="">Lastname:</label><span id="lastName"></span></li>
+                    <li><label for="">Contact Number:</label><span id="contactNumber"></span></li>
+                    <li><label for="">Email:</label><span id="email"></span></li>
+                    <li><label for="">Balance:</label><span id="balance"></span></li>
+                </ul>
+            </div>
+       </div>
+        
     </div>
 <script src="admin.js"></script>
 </body>
 </html>
+
+          

@@ -17,7 +17,11 @@
             <nav>
                 <ul>
                     <li><i class="fas fa-bars" id="menu-bar"></i></li>
-                    <li><a href="./index.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Profile</span></a></div></li>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-question" id="about"></i><span>Help</span></div></a>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-cog" id="about"></i><span>Settings</span></div></a>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-info" ></i><span>About Us</span></div></a><i class=""></i>
+                    <li><div class="backgroundNav"><a href="./index.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></div></li>
                 </ul>
             </nav>
         </div>
@@ -90,11 +94,12 @@
                 <form id="addExpensesFormEdit" class="input-group1" role="form" >
                     <input  id="editExpense" name = "Item1" type="text" class="input-field1" placeholder="Enter expense" required>
                     <input  id="editCost" name = "Cost1" type="number" class="input-field1" placeholder="Enter Cost" required>
-                    <p class="current_money">Current Balance: <span id ="current_money3"></span></p>
+                    <p class="current_money1">Current Balance: <span id ="current_money3"></span></p>
                     <button id="editBtn" type="submit" class="add-btn" onclick="editRow(event)">Save</button> 
                 </form>
             </div>
         </section>
+        
         <section class="background" id="depositform">
             <div class="deposit-box">
                 <i id="exit1" class="fa fa-close"></i>
@@ -112,20 +117,6 @@
                     <input  id="withdrawValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
                     <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
                     <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>  
-                </form> 
-            </div>
-        </section>
-        <section class="background" id="sendMoneyForm">
-            <div class="sendMoney-box">
-                <i id="exit3" class="fa fa-close"></i>
-                <form id="sendMoneyForm1" role="form" onsubmit="sendMoney(event)">
-                    <h3 >Account Name:<span id ="recieverName"></span></h3>
-                    <input  id="recieverAccountNumber" name = "Item" type="text" class="input-field1" placeholder="Enter Account #" required>
-                    <input  id="receiverMoney" name = "Item" type="number" class="input-field1 hide" placeholder="Reciever Money" required>
-                    <input  id="sendMoneyValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
-                    <p class="current_money">Current Balance: <span id ="current_money2"></span></p>
-                    <p class="current_money hide">Receiver Balance: <span id ="receiver_money2"></span></p>
-                    <button id="sendMoneyBtn" type="submit" class="sendMoney-btn">Send Money</button>  
                 </form> 
             </div>
         </section>

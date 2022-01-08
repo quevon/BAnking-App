@@ -56,7 +56,6 @@ menu_bar.onclick = () =>{
 }
 displayDate.innerHTML = date
 window.onload = () =>{
-    
     let getCurrentUser = localStorage.getItem("formData3")
     listArray = JSON.parse(getCurrentUser);
     usernameHeader.innerHTML =  listArray[0].Current_User
@@ -86,7 +85,6 @@ window.onload = () =>{
     }
  
 }
-
 //send money
 inputAccount.onkeyup = e => {
     var receiverMoney = document.getElementById('receiverMoney')
@@ -101,7 +99,6 @@ inputAccount.onkeyup = e => {
     receiverName.innerHTML = `${listArray2[objIndex].Firstname} ${listArray2[objIndex].Lastname}`;
     receiverMoney.value = listArray2[objIndex].Amount;
 }
- 
 const sendMoney = e =>{
     var inputAccount = document.getElementById('recieverAccountNumber')
     var inputAmount = document.getElementById('sendMoneyValue').value;
@@ -133,7 +130,7 @@ const sendMoney = e =>{
             Reciever_Account_No: document.getElementById('recieverAccountNumber').value,
             Reciever_Account_Name: document.getElementById('recieverName').innerHTML,
             Sent_Amount: document.getElementById('sendMoneyValue').value,
-            Balance: totalAmounta,
+            Balance: totalAmount,
         });
         localStorage.setItem('sentMoneyData', JSON.stringify(sentMoneyData));
         //update the balance of the sender
@@ -155,7 +152,6 @@ const sendMoney = e =>{
         document.getElementById('recieverAccountNumber').focus();
         alert("Sent Successfully!")
     }
-
 }
 //deposit
 const deposit = e =>{
@@ -251,7 +247,6 @@ const addExpense = e =>{
         window.location.reload()
     }
 }
-
 function displayData() {
     console.log(localStorage.getItem('formData1'));
     if(localStorage.getItem('formData1')){
@@ -272,17 +267,6 @@ function displayData() {
     }
 }
 displayData();
-function deleteTask(index){
-    if(confirm("Are you sure you want to delete?")){
-
-        let getLocalStorageData = localStorage.getItem("formData1");
-        listArray = JSON.parse(getLocalStorageData);
-        listArray.splice(index, 1); //delete or remove the li
-        localStorage.setItem("formData1", JSON.stringify(listArray));
-        window.location.reload()
-    }
-}
-
 var table = document.getElementById('myTable2'),rIndex;
 
 for(var i = 0; i < table.rows.length;i++){
@@ -293,14 +277,24 @@ for(var i = 0; i < table.rows.length;i++){
     document.getElementById('editCost').value = this.cells[3].innerHTML;
 };
 }
-
 function editTask(){
     gridBoard.style.opacity =".5"
     expenseformEdit.style.display ="inline-block"
 }
+function deleteTask(index){
+    if(confirm("Are you sure you want to delete?")){
+
+        let getLocalStorageData = localStorage.getItem("formData1");
+        listArray = JSON.parse(getLocalStorageData);
+        listArray.splice(index, 1); //delete or remove the li
+        localStorage.setItem("formData1", JSON.stringify(listArray));
+        window.location.reload()
+    }
+}
 function editRow(e){
     var newExpenseName = document.getElementById('editExpense').value;
     var newCost = document.getElementById('editCost').value;
+
     var indexofrows = document.getElementById('itemIndex').innerHTML;
     let getLocalStorageData2 = localStorage.getItem("formData1");   
     listArray2 = JSON.parse(getLocalStorageData2); 

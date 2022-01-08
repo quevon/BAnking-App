@@ -1,4 +1,18 @@
+const menu_bar = document.getElementById('menu-bar');
+const menu_bar1 = document.getElementById('menu-bar1');
+const sideBar = document.getElementById('sideBar');
+const userBoard = document.getElementById('user-info-board');
+const exitUsers = document.getElementById('exit');
 
+menu_bar1.onclick = () =>{
+  sideBar.style.left = "0"
+}
+menu_bar.onclick = () =>{
+  sideBar.style.left = "-232px"
+}
+exitUsers.onclick = () =>{
+  userBoard.style.display = "none"
+}
 window.addEventListener('load' , () => {
   display();
 });
@@ -18,14 +32,31 @@ function display(){
                         <td>${data.Contact}</td>
                         <td>${data.Email}</td>
                         <td>${data.Amount}</td>
-                        <td><span class="icon" onclick="deleteTask1(${index})"><i class="fas fa-trash"></i></span></td>
+                        <td><span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span><span class="icon" onclick="viewTask()"><i class="fas fa-eye"></i></span></td>
                     </tr>
             `;
         });
     }
 }
 
-function deleteTask1(index){
+function viewTask(){
+  userBoard.style.display = "inline-block"
+  var table = document.getElementById('myTable'),rIndex;
+
+  for(var i = 0; i < table.rows.length;i++){
+      table.rows[i].onclick = function(){
+      console.log(rIndex)
+      document.getElementById('accountNumber').innerText = this.cells[0].innerHTML;
+      document.getElementById('firstName').innerText = this.cells[1].innerHTML;
+      document.getElementById('middleName').innerText = this.cells[2].innerHTML;
+      document.getElementById('lastName').innerText = this.cells[3].innerHTML;
+      document.getElementById('contactNumber').innerText = this.cells[4].innerHTML;
+      document.getElementById('email').innerText = this.cells[5].innerHTML;
+      document.getElementById('balance').innerText = this.cells[6].innerHTML;
+  };
+}
+}
+function deleteTask(index){
     if(confirm("Are you sure you want to delete?")){
         let getLocalStorageData = localStorage.getItem("formData");
         listArray = JSON.parse(getLocalStorageData);

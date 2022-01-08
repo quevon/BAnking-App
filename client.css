@@ -38,7 +38,7 @@ html{
     position: absolute;
     left: -232px;
     z-index: 1000;
-    transition: 1s;
+    transition: 0.3s;
 }
 nav .fa-bars{
     padding: 10px 12px 10px 12px;
@@ -48,25 +48,36 @@ nav .fa-bars{
     cursor: pointer;
     margin: 10px auto 10px 10px;
     transition: 1s;
+    color: #FFFEFA;
+    transition: 0.3s;
 }
 nav .fa-bars:hover{
+    background: gray;
+    -webkit-text-stroke: 2px gray;
+}
+nav ul li .backgroundNav{
+    height: 100%;
+    width: 100%;
+    padding:  10px 0 10px 20px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+nav ul li .backgroundNav:hover{
     background: gray;
 }
 nav ul li{
    display:block;
 }
+nav ul li span{
+   padding-left:10px ;
+ }
 nav ul li a{
     cursor: pointer;
-    padding: 10px 62% 10px 20px;
-    width: 100%;
-    height: 100%;
     font-size: 15px;
     cursor: pointer;
     color: #FFFEFA;
     text-decoration: none;
-}
-nav ul li:hover a{
-    background: gray;
+    transition: 0.3s;
 }
 .main-board{
     height: 100%;
@@ -249,7 +260,7 @@ section form .current_money{
 }
 .expense-box{
     width: 380px;
-    height: 230px;
+    height: 250px;
     position: absolute;
     margin: 10% auto 0 35%;
     background: #fff;
