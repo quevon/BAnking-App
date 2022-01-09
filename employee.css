@@ -95,13 +95,12 @@ nav ul li a{
 }
 .all-board{
     height: 80%;
-    width: 80%;
+    width: 95%;
     background: #fff;
-    margin: 0 0 0 100px;
+    margin: 0 0 0 50px;
 }
 .styled-table {
     border-collapse: collapse;
-    margin: 10px 0 ;
     font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -114,7 +113,7 @@ nav ul li a{
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+    padding: 6px 10px;
 }
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -131,10 +130,12 @@ nav ul li a{
     display: none;
 }
 .user-info-board .user-info-box{
-    height: 100%;
+    height: 95%;
     width: 30%;
     background: #dddddd;
-    margin: 5% 0 0 35%;
+    margin:5% 0 0 35%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
 }
 #exit{
     right: 0;
@@ -143,7 +144,7 @@ nav ul li a{
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 20%;
+    height: 10%;
     padding-bottom: 2rem;
 }
 .fa-arrow-left{
@@ -153,17 +154,19 @@ nav ul li a{
 .user-profilepic img{
     border-radius: 50%;
     border: 2px solid red;
+    height: 5rem;
 }
 .profile-name{
     width: 100%;
     text-align: center;
     font-size: 2rem;
+    padding-bottom: 20px;
 }
 .user-info-board ul{
     list-style-type:none;
 }
 .user-info-board ul li{
-    padding: 0 0 10px 20px;
+    padding: 0 0 8px 20px;
 }
 .user-info-board ul li label{
     font-size: 15px;
@@ -181,6 +184,29 @@ nav ul li a{
 #search{
    margin:10px;
    border-bottom: 1px solid #dddddd;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.buttons button{
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    border: 0;
+    outline: none;
+    width: 40%;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+.buttons button:hover{
+    color: #fff;
+    
 }
 
 

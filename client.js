@@ -56,10 +56,10 @@ menu_bar.onclick = () =>{
 }
 displayDate.innerHTML = date
 window.onload = () =>{
-    let getCurrentUser = localStorage.getItem("formData3")
+    let getCurrentUser = localStorage.getItem("currentClientUser")
     listArray = JSON.parse(getCurrentUser);
     usernameHeader.innerHTML =  listArray[0].Current_User
-    let getLocalStorageData3 = localStorage.getItem("formData");   
+    let getLocalStorageData3 = localStorage.getItem("clientData");   
     listArray3 = JSON.parse(getLocalStorageData3);    
     objIndex = listArray3.findIndex((obj => obj.Username == usernameHeader.innerHTML));
     accountNumber.innerHTML = listArray3[objIndex].Account_Number
@@ -91,14 +91,30 @@ inputAccount.onkeyup = e => {
     var inputAccount1 = document.getElementById('recieverAccountNumber');
     var receiverName = document.getElementById('recieverName')
 
-    let getLocalStorageData2 = localStorage.getItem("formData");   
-    listArray2 = JSON.parse(getLocalStorageData2); 
-    console.log(listArray2);
-    objIndex = listArray2.findIndex((obj => obj.Account_Number == inputAccount1.value));
-
-    receiverName.innerHTML = `${listArray2[objIndex].Firstname} ${listArray2[objIndex].Lastname}`;
-    receiverMoney.value = listArray2[objIndex].Amount;
+    // let getLocalStorageData2 = localStorage.getItem("formData");   
+    // listArray2 = JSON.parse(getLocalStorageData2); 
+    // console.log(listArray2);
+    // objIndex = listArray2.findIndex((obj => obj.Account_Number == inputAccount1.value));
+    // if(objIndex){
+    //     receiverName.innerHTML = `${listArray2[objIndex].Firstname} ${listArray2[objIndex].Lastname}`;
+    //     receiverMoney.value = listArray2[objIndex].Amount;
+    // }else{
+    //     receiverName.innerHTML = "";
+    // }
+    var data = JSON.parse(localStorage.getItem('currentClientUser'));
+    let exist = data.length && JSON.parse(localStorage.getItem('currentClientUser')).some(data1=> data1.Account_Number == inputAccount1.value)
+    objIndex = data.findIndex((obj => obj.Account_Number == inputAccount1.value));
+    if (exist){
+        receiverName.innerHTML = `${data[objIndex].Firstname} ${data[objIndex].Lastname}`;
+        receiverMoney.value = data[objIndex].Amount;
+        receiverName.style.color = "green";
+    }else{
+        receiverName.innerHTML = "No Receiver Available!";
+        receiverName.style.color = "red";
+    }
+    
 }
+
 const sendMoney = e =>{
     var inputAccount = document.getElementById('recieverAccountNumber')
     var inputAmount = document.getElementById('sendMoneyValue').value;
@@ -108,13 +124,12 @@ const sendMoney = e =>{
     var currentBalance = accountBalance.innerHTML;
     var data = JSON.parse(localStorage.getItem('formData'));
     let exist = data.length && 
-    JSON.parse(localStorage.getItem('formData')).some(data1=> data1.Account_Number == document.getElementById("recieverAccountNumber").value)
+    JSON.parse(localStorage.getItem('currentClientUser')).some(data1=> data1.Account_Number == document.getElementById("recieverAccountNumber").value)
     if(!exist){
         alert("Receiver doesn't exist!")
         e.preventDefault();
     }else if(parseFloat(currentBalance) < parseFloat(inputAmount)){
         alert("You don't have enough balance!")
-        currentBalance
         e.preventDefault();
     }else{
         var totalAmount = parseFloat(currentBalance) - parseFloat(inputAmount);
@@ -134,19 +149,19 @@ const sendMoney = e =>{
         });
         localStorage.setItem('sentMoneyData', JSON.stringify(sentMoneyData));
         //update the balance of the sender
-        let getLocalStorageData3 = localStorage.getItem("formData");   
+        let getLocalStorageData3 = localStorage.getItem("currentClientUser");   
         listArray3 = JSON.parse(getLocalStorageData3); 
         console.log(listArray3);
         objIndex = listArray3.findIndex((obj => obj.Username == usernameHeader.innerHTML));
         listArray3[objIndex].Amount = totalAmount;
-        localStorage.setItem('formData', JSON.stringify(listArray3));
+        localStorage.setItem('currentClientUser', JSON.stringify(listArray3));
         //update the balance of the receiver
-        let getLocalStorageData4 = localStorage.getItem("formData");   
+        let getLocalStorageData4 = localStorage.getItem("currentClientUser");   
         listArray4 = JSON.parse(getLocalStorageData4); 
         console.log(listArray4);
         objIndex = listArray4.findIndex((obj => obj.Account_Number == inputAccount.value));
         listArray4[objIndex].Amount = totalAmount2;
-        localStorage.setItem('formData', JSON.stringify(listArray4));
+        localStorage.setItem('currentClientUser', JSON.stringify(listArray4));
         document.getElementById('recieverName').innerHTML = '';
         document.getElementById('sendMoneyForm1').reset();
         document.getElementById('recieverAccountNumber').focus();
@@ -154,7 +169,7 @@ const sendMoney = e =>{
     }
 }
 //deposit
-const deposit = e =>{
+const deposit = () =>{
     var inputAmount = document.getElementById('depositValue').value;
     var total = document.getElementById('current_money');
     var currentBalance = accountBalance.innerHTML;
@@ -171,12 +186,12 @@ const deposit = e =>{
     });
     localStorage.setItem('depositData', JSON.stringify(depositData));
 
-    let getLocalStorageData1 = localStorage.getItem("formData");   
+    let getLocalStorageData1 = localStorage.getItem("currentClientUser");   
     listArray1 = JSON.parse(getLocalStorageData1); 
     console.log(listArray1);
     objIndex = listArray1.findIndex((obj => obj.Username == usernameHeader.innerHTML));
     listArray1[objIndex].Amount = totalAmount; 
-    localStorage.setItem('formData', JSON.stringify(listArray1));
+    localStorage.setItem('currentClientUser', JSON.stringify(listArray1));
     
     document.getElementById('depositForm1').reset();
     document.getElementById('depositValue').focus();
@@ -205,12 +220,12 @@ const widthDraw = e =>{
         });
 
         localStorage.setItem('withdrawData', JSON.stringify(withdrawData));
-        let getLocalStorageData2 = localStorage.getItem("formData");   
+        let getLocalStorageData2 = localStorage.getItem("currentClientUser");   
         listArray2 = JSON.parse(getLocalStorageData2); 
         console.log(listArray2);
         objIndex = listArray2.findIndex((obj => obj.Username == usernameHeader.innerHTML));
         listArray2[objIndex].Amount = totalAmount;
-        localStorage.setItem('formData', JSON.stringify(listArray2));
+        localStorage.setItem('currentClientUser', JSON.stringify(listArray2));
         document.getElementById('withdrawform1').reset();
         document.getElementById('withdrawValue').focus();
         alert("Withdraw Successful")
@@ -226,7 +241,7 @@ const addExpense = e =>{
     }else{
         var totalAmount = parseFloat(currentBalance) - parseFloat(cost);
         total.innerHTML = totalAmount;
-        let getLocalStorageData2 = localStorage.getItem("formData");   
+        let getLocalStorageData2 = localStorage.getItem("currentClientUser");   
         listArray2 = JSON.parse(getLocalStorageData2); 
         console.log(listArray2);
         objIndex = listArray2.findIndex((obj => obj.Username == usernameHeader.innerHTML));
@@ -267,6 +282,38 @@ function displayData() {
     }
 }
 displayData();
+
+function deleteTask(index){
+    if(confirm("Are you sure you want to delete?")){
+
+        var table = document.getElementById('myTable2'),rIndex;
+
+        for(var i = 0; i < table.rows.length;i++){
+            table.rows[i].onclick = function(){
+            rIndex = this.rowIndex;
+            document.getElementById('itemCost2').innerHTML  = this.cells[3].innerHTML;
+
+            var newCost = parseFloat(document.getElementById('itemCost2').innerHTML) + parseFloat(accountBalance.innerHTML)
+
+            console.log(newCost)
+            
+            let getLocalStorageData2 = localStorage.getItem("formData");   
+            listArray2 = JSON.parse(getLocalStorageData2); 
+            objIndex = listArray2.findIndex((obj => obj.Account_Number ==  accountNumber.innerHTML));
+            listArray2[objIndex].Amount = newCost
+            localStorage.setItem('formData', JSON.stringify(listArray2)) 
+
+            let getLocalStorageData = localStorage.getItem("formData1");
+            listArray = JSON.parse(getLocalStorageData);
+            listArray.splice(index, 1); //delete or remove the li
+            localStorage.setItem("formData1", JSON.stringify(listArray));
+            window.location.reload()
+
+            };
+        }
+    }
+}
+
 var table = document.getElementById('myTable2'),rIndex;
 
 for(var i = 0; i < table.rows.length;i++){
@@ -281,16 +328,6 @@ for(var i = 0; i < table.rows.length;i++){
 function editTask(){
     gridBoard.style.opacity =".5"
     expenseformEdit.style.display ="inline-block"
-}
-function deleteTask(index){
-    if(confirm("Are you sure you want to delete?")){
-
-        let getLocalStorageData = localStorage.getItem("formData1");
-        listArray = JSON.parse(getLocalStorageData);
-        listArray.splice(index, 1); //delete or remove the li
-        localStorage.setItem("formData1", JSON.stringify(listArray));
-        window.location.reload()
-    }
 }
 function editRow(e){
     var newExpenseName = document.getElementById('editExpense').value;
@@ -311,11 +348,11 @@ function editRow(e){
         listArray2[objIndex].Cost = newCost
         localStorage.setItem('formData1', JSON.stringify(listArray2)) 
     
-        let getLocalStorageData = localStorage.getItem("formData");   
+        let getLocalStorageData = localStorage.getItem("currentClientUser");   
         listArray = JSON.parse(getLocalStorageData); 
         objIndex1 = listArray.findIndex((obj => obj.Account_Number == accountNumber.innerText));
         listArray[objIndex1].Amount = newBalance
-        localStorage.setItem('formData', JSON.stringify(listArray)) 
+        localStorage.setItem('currentClientUser', JSON.stringify(listArray)) 
     }
     
 }
@@ -347,6 +384,7 @@ withdrawFormBtn.onclick = ()=>{
 withdrawExit.onclick = ()=>{
     gridBoard.style.opacity ="1"
     withdrawform.style.display ="none"
+    
 }
 sendMoneyFormBtn.onclick = ()=>{
     gridBoard.style.opacity =".5"
@@ -484,7 +522,7 @@ function sentMoneyDisplayHistory(){
                         <td>${data.Date}</td>
                         <td>${data.Time}</td>
                         <td>${data.Reciever_Account_Name}</td>
-                        <td>${data.Reciever_Account_Name}</td>
+                        <td>${data.Reciever_Account_No}</td>
                         <td>${data.Sent_Amount}</td>
                         <td>${data.Balance}</td>
                     </tr>

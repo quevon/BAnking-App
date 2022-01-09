@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Admin</title>
-    <link rel="stylesheet" href="admin.css">
+    <title>Employee</title>
+    <link rel="stylesheet" href="employee.css">
 </head>
 <body>
     <div class="main-board">
@@ -16,9 +17,7 @@
             <nav>
                 <ul>
                     <li><i class="fas fa-bars" id="menu-bar"></i></li>
-                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Admin Profile</span></a></div></li>
-                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Users List</span></a></div></li>
-                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Employee List</span></a></div></li>
+                    <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Employee Profile</span></a></div></li>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-question" id="about"></i><span>Help</span></div></a>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-cog" id="about"></i><span>Settings</span></div></a>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-info" ></i><span>About Us</span></div></a><i class=""></i>
@@ -38,9 +37,14 @@
                             <th>Firstname</th>
                             <th>Middlename</th>
                             <th>Lastname</th>
-                            <th>Contact</th>
+                            <th>Gender</th>
                             <th>Email</th>
-                            <th>Amount</th>
+                            <th>Contact</th>
+                            <th>Gcash Code</th>
+                            <th>Gcash Name</th>
+                            <th>Gcash Amount</th> 
+                            <th>Username</th>
+                            <th>Password </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -65,15 +69,24 @@
                     <li><label for="">Firstname:</label><span id="firstName"></span></li>
                     <li><label for="">Middlename:</label><span id ="middleName"></span></li>
                     <li><label for="">Lastname:</label><span id="lastName"></span></li>
+                    <li><label for="">Gender:</label><span id="gender1"></span></li>
                     <li><label for="">Contact Number:</label><span id="contactNumber"></span></li>
                     <li><label for="">Email:</label><span id="email"></span></li>
-                    <li><label for="">Balance:</label><span id="balance"></span></li>
+                    <li><label for="">Gcash Ccode:</label><span id="gcashcode"></span></li>
+                    <li><label for="">Gcash Name:</label><span id="gcashname"></span></li>
+                    <li><label for="">Gcash Amount:</label><span id="gcashamount"></span></li>
+                    <li><label for="">Username:</label><span id="username"></span></li>
+                    <li><label for="">Password:</label><span id="password"></span></li>
                 </ul>
+                <div class="buttons">
+                    <button id="approve">Approve</button>
+                    <button id="decline">Decline</button>
+                </div>
             </div>
        </div>
         
     </div>
-<script src="admin.js"></script>
+<script src="employee.js"></script>
 </body>
 </html>
 

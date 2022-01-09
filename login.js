@@ -55,30 +55,30 @@ loginFormBtn.onclick = ()=>{
 login1.onclick = (a)=>{
     const username = document.getElementById("uname").value;
     const password = document.getElementById("psw").value;
-    var data = JSON.parse(localStorage.getItem('formData'));
-    let exist = data.length && 
-    JSON.parse(localStorage.getItem('formData')).some(data1=> data1.Username == document.getElementById("uname").value && data1.Password == document.getElementById("psw").value)
-    if(!exist){
+    var adminDb = JSON.parse(localStorage.getItem('adminData'));
+    var clientDb  = JSON.parse(localStorage.getItem('clientData'));
+
+    let adminUserExist = adminDb.length && JSON.parse(localStorage.getItem('adminData')).some(data=> data.Username == username && data.Password == password)
+    let clientUserExist = clientDb.length && JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username == username && data.Password == password)
+    
+    if(adminUserExist){
+        window.open("./admin.html", "_blank");
+        document.getElementById('loginform').reset();
+        document.getElementById('uname').focus();
+    }else if(clientUserExist){
+        CurrentUserDb = JSON.parse(sessionStorage.getItem('currentClientUser')) || [];
+        CurrentUserDb.push({
+            Current_User: username,
+        });
+        localStorage.setItem('currentClientUser', JSON.stringify(CurrentUserDb));
+        location.replace("./client.html");
+    }else{
         alert("Log In Failed!")
         a.preventDefault();
-    }else if(username == data[0].Username && password == data[0].Password){
-            window.open("./admin.html", "_blank");
-            document.getElementById('loginform').reset();
-            document.getElementById('uname').focus();
-    }else{
-        for(let i = 1;i < data.length;i++){
-            if (username == data[i].Username && password == data[i].Password) {
-                formData3 = JSON.parse(sessionStorage.getItem('formData3')) || [];
-                formData3.push({
-                    Current_User: document.getElementById('uname').value,
-                });
-                localStorage.setItem('formData3', JSON.stringify(formData3));
-                location.replace("./client.html");
-            }  
-        }
-        a.preventDefault();
     }
+    a.preventDefault();
 }
+
 //for generating unique account number
 function randomnumber(num1,num2){
     return Math.random() * (num2 - num1) + num1;
