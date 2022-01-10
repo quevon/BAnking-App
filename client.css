@@ -243,7 +243,7 @@ section form .current_money{
 .deposit-box,
 .withdraw-box{
     width: 380px;
-    height: 180px;
+    height: 310px;
     position: absolute;
     margin: 10% auto 0 35%;
     background: #fff;

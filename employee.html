@@ -18,6 +18,10 @@
                 <ul>
                     <li><i class="fas fa-bars" id="menu-bar"></i></li>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-user"></i><span>Employee Profile</span></a></div></li>
+                    <li><div class="backgroundNav" id="pendingList"><i class="fas fa-user"></i><span>Pending Accounts</span></div></li>
+                    <li><div class="backgroundNav" id="clientList"><i class="fas fa-user"></i><span>Client List</span></div></li>
+                    <li><div class="backgroundNav" id="depositRequest"><i class="fas fa-user" ></i><span>Deposit Request</span></div></li>
+                    <li><div class="backgroundNav" id="withdrawRequest"><i class="fas fa-user" ></i><span>Withdraw Request</span></div></li>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-question" id="about"></i><span>Help</span></div></a>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-cog" id="about"></i><span>Settings</span></div></a>
                     <li><div class="backgroundNav"><a href="#"><i class="fas fa-info" ></i><span>About Us</span></div></a><i class=""></i>
@@ -25,7 +29,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="all-board">
+        <!-- register request  -->
+        <div class="all-board" id="board1">
             <div class="search">
                 <input type="text" placeholder="search here.." id="search"><span><i class="fas fa-search"></i></span>
             </div>
@@ -48,12 +53,14 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="registerBody">
                         <!-- local storage -->
                     </tbody>
                 </table>
+    
             </div>
         </div>
+        
        <div class="user-info-board" id="user-info-board">
             <div class="user-info-box">
                 <i id="exit" class="fas fa-arrow-left"></i>
@@ -84,8 +91,150 @@
                 </div>
             </div>
        </div>
-        
+       <!-- client list  -->
+       <div class="all-board1" id="board2">
+            <div class="search1">
+                <input type="text" placeholder="search here.." id="search1"><span><i class="fas fa-search"></i></span>
+            </div>
+            <div id="output" class="table">
+                <table class="styled-table" id="myTable1">
+                    <thead>
+                        <tr>
+                            <th>Account #</th>
+                            <th>Firstname</th>
+                            <th>Middlename</th>
+                            <th>Lastname</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Balance</th> 
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientBody">
+                        <!-- local storage -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="user-info-board" id="user-info-board1">
+                <div class="user-info-box">
+                    <i id="exit1" class="fas fa-arrow-left"></i>
+                    <div class="user-profilepic">
+                        <img src="./images/12.png">
+                        
+                    </div>
+                    <div class="profile-name">
+                        <span id="firstName2"></span> <span id="lastName2"></span>
+                    </div>
+                     <ul>
+                        <li><label for="">Account Number:</label><span id="accountNumber2"></span></li>
+                        <li><label for="">Firstname:</label><span id="firstName3"></span></li>
+                        <li><label for="">Middlename:</label><span id ="middleName2"></span></li>
+                        <li><label for="">Lastname:</label><span id="lastName3"></span></li>
+                        <li><label for="">Contact Number:</label><span id="contactNumber2"></span></li>
+                        <li><label for="">Email:</label><span id="email2"></span></li>
+                        <li><label for="">Balance:</label><span id="balance2"></span></li>
+                    </ul>
+                </div>
+           </div>
     </div>
+    <!-- deposit request -->
+    <div class="all-board2" id="board3">
+        <div class="search1">
+            <input type="text" placeholder="search here.." id="search2"><span><i class="fas fa-search"></i></span>
+        </div>
+        <div id="output" class="table">
+            <table class="styled-table" id="myTable2">
+                <thead>
+                    <tr>
+                        <th>Account #</th>
+                        <th>Account Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Gcash Code</th>
+                        <th>Gcash Name</th>
+                        <th>Gcash Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="depositRequestBody">
+                    <!-- local storage -->
+                </tbody>
+            </table>
+        </div>
+        <div class="user-info-board" id="user-info-board2">
+            <div class="user-info-box">
+                <i id="exit2" class="fas fa-arrow-left"></i>
+                <div class="user-profilepic">
+                    <img src="./images/12.png">
+                    
+                </div>
+                <div class="profile-name">
+                    <span id="firstName3"></span> <span id="lastName3"></span>
+                </div>
+                 <ul>
+                    <li><label for="">Account Number:</label><span id="accountNumber3"></span></li>
+                    <li><label for="">Account Name:</label><span id="accountName3"></span></li>
+                    <li><label for="">Gcash Code:</label><span id ="gcashCode2"></span></li>
+                    <li><label for="">Gcash Name</label>:</label><span id="gcashName2"></span></li>
+                    <li><label for="">Gcash Amount:</label><span id="gcashamount2"></span></li>
+                    <li><label for="">Date:</label><span id="date1"></span></li>
+                    <li><label for="">Time:</label><span id="time1"></span></li>
+                </ul>
+                <div class="buttons">
+                    <button id="approve1">Approve</button>
+                    <button id="decline1">Decline</button>
+                </div>
+            </div>
+       </div>
+     </div>
+      <!-- withdraw request  -->
+     <div class="all-board3" id="board4">
+        <div class="search1">
+            <input type="text" placeholder="search here.." id="search3"><span><i class="fas fa-search"></i></span>
+        </div>
+        <div id="output" class="table">
+            <table class="styled-table" id="myTable3">
+                <thead>
+                    <tr>
+                        <th>Account #</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Gcash Code</th>
+                        <th>Gcash Name</th>
+                        <th>Gcash Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="withdrawRequestBody">
+                    <!-- local storage -->
+                </tbody>
+            </table>
+        </div>
+        <div class="user-info-board" id="user-info-board3">
+            <div class="user-info-box">
+                <i id="exit3" class="fas fa-arrow-left"></i>
+                <div class="user-profilepic">
+                    <img src="./images/12.png">
+                    
+                </div>
+                <div class="profile-name">
+                    <span id="firstName4"></span> <span id="lastName4"></span>
+                </div>
+                 <ul>
+                    <li><label for="">Account Number:</label><span id="accountNumber4"></span></li>
+                    <li><label for="">Account Name:</label><span id="accountName4"></span></li>
+                    <li><label for="">Gcash Name</label>:</label><span id="gcashName3"></span></li>
+                    <li><label for="">Gcash Amount:</label><span id="gcashamount3"></span></li>
+                    <li><label for="">Date:</label><span id="date2"></span></li>
+                    <li><label for="">Time:</label><span id="time2"></span></li>
+                </ul>
+                <div class="buttons">
+                    <button id="approve2">Approve</button>
+                    <button id="decline2">Decline</button>
+                </div>
+            </div>
+        </div>
 <script src="employee.js"></script>
 </body>
 </html>

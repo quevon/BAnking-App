@@ -68,6 +68,12 @@ nav ul li .backgroundNav:hover{
 }
 nav ul li{
    display:block;
+   cursor: pointer;
+   font-size: 15px;
+   cursor: pointer;
+   color: #FFFEFA;
+   text-decoration: none;
+   transition: 0.3s;
 }
 nav ul li span{
    padding-left:10px ;
@@ -89,6 +95,7 @@ nav ul li a{
     position: absolute;
     overflow: hidden;
 }
+
 .table{
   display: flex;
   justify-content: center;
@@ -98,6 +105,29 @@ nav ul li a{
     width: 95%;
     background: #fff;
     margin: 0 0 0 50px;
+    display: none;
+    
+}
+.all-board1{
+    height: 80%;
+    width:70%;
+    background: #fff;
+    margin: 0 0 0 100px;
+    display: none
+}
+.all-board2{
+    height: 80%;
+    width:70%;
+    background: #fff;
+    margin: 0 0 0 100px;
+    display: none;
+}
+.all-board3{
+    height: 80%;
+    width:70%;
+    background: #fff;
+    margin: 0 0 0 100px;
+    display: none;
 }
 .styled-table {
     border-collapse: collapse;
@@ -113,7 +143,7 @@ nav ul li a{
 
 .styled-table th,
 .styled-table td {
-    padding: 6px 10px;
+    padding: 12px 15px;
 }
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -128,6 +158,7 @@ nav ul li a{
     background-size: cover;
     position: absolute;
     display: none;
+ 
 }
 .user-info-board .user-info-box{
     height: 95%;
@@ -184,6 +215,18 @@ nav ul li a{
 #search{
    margin:10px;
    border-bottom: 1px solid #dddddd;
+}
+#search1{
+    margin:10px;
+    border-bottom: 1px solid #dddddd;
+}
+#search2{
+    margin:10px;
+    border-bottom: 1px solid #dddddd;
+}
+#search3{
+    margin:10px;
+    border-bottom: 1px solid #dddddd;
 }
 .buttons{
     display: flex;

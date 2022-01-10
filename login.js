@@ -62,7 +62,7 @@ login1.onclick = (a)=>{
     let clientUserExist = clientDb.length && JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username == username && data.Password == password)
     
     if(adminUserExist){
-        window.open("./admin.html", "_blank");
+        window.open("./employee.html", "_blank");
         document.getElementById('loginform').reset();
         document.getElementById('uname').focus();
     }else if(clientUserExist){

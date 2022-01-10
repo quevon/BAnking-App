@@ -107,7 +107,9 @@
             <div class="deposit-box">
                 <i id="exit1" class="fa fa-close"></i>
                 <form id="depositForm1" role="form" onsubmit="deposit(event)">
-                    <input  id="depositValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <input  id="GcashCode" name = "Item" type="type" class="input-field1" placeholder="Gcash code" required>
+                    <input  id="GcashName" name = "Item" type="type" class="input-field1" placeholder="Gcash Name" required>
+                    <input  id="GcashAmount" name = "Item" type="number" class="input-field1" placeholder="Gcash Amounts" required>
                     <p class="current_money">Current Balance: <span id ="current_money"></span></p>
                     <button id="depositBtn" type="submit" class="deposit-btn">Deposit</button>
                 </form> 
@@ -118,6 +120,8 @@
                 <i id="exit2" class="fa fa-close"></i>
                 <form id="withdrawform1" role="form" onsubmit="widthDraw(event)">
                     <input  id="withdrawValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <input  id="GcashName1" name = "Item" type="type" class="input-field1" placeholder="Gcash Name" required>
+                    <input  id="GcashNumber" name = "Item" type="number" class="input-field1" placeholder="Gcash Number" required>
                     <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
                     <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>  
                 </form> 
@@ -172,9 +176,7 @@
                                     <th>Account #</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Deposit Amount</th>
-                                    <th>Balance</th>
-                                    
+                                    <th>Deposit Amount</th>     
                                 </tr>
                             </thead>
                             <tbody id="depositBody">
@@ -198,7 +200,6 @@
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Withdraw Amount</th>
-                                    <th>Balance</th>
                                 </tr>
                             </thead>
                             <tbody id="withdrawBody">
