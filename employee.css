@@ -105,12 +105,11 @@ nav ul li a{
     width: 95%;
     background: #fff;
     margin: 0 0 0 50px;
-    display: none;
     
 }
 .all-board1{
     height: 80%;
-    width:70%;
+    width:80%;
     background: #fff;
     margin: 0 0 0 100px;
     display: none
@@ -129,6 +128,13 @@ nav ul li a{
     margin: 0 0 0 100px;
     display: none;
 }
+/* .all-board4{
+    height: 80%;
+    width:70%;
+    background: #fff;
+    margin: 0 0 0 100px;
+    display: none;
+} */
 .styled-table {
     border-collapse: collapse;
     font-size: 0.9em;
@@ -185,12 +191,12 @@ nav ul li a{
 .user-profilepic img{
     border-radius: 50%;
     border: 2px solid red;
-    height: 5rem;
+    height: 4rem;
 }
 .profile-name{
     width: 100%;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1rem;
     padding-bottom: 20px;
 }
 .user-info-board ul{
@@ -200,7 +206,7 @@ nav ul li a{
     padding: 0 0 8px 20px;
 }
 .user-info-board ul li label{
-    font-size: 15px;
+    font-size: 10px;
     padding-right:5px ;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
@@ -231,18 +237,18 @@ nav ul li a{
 .buttons{
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .buttons button{
     border-radius: 30px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     background: linear-gradient(to right, #ff105f,#ffad06);
     border: 0;
     outline: none;
-    width: 40%;
-    padding: 10px 20px;
+    width: 30%;
+    padding: 10px 10px;
     cursor: pointer;
     display: block;
     margin: auto;
@@ -251,7 +257,42 @@ nav ul li a{
     color: #fff;
     
 }
-
-
+.forms{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 70%;
+    margin: 1% auto;
+   background: #fff;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+   border-radius: 10px;
+   display: none;
+}
+.forms .input-field{
+    width: 40%;
+    padding: 10px ;
+    margin: 5px 10px;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+#regiBtn17{
+    width: 45%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+#accountNumber7{
+    display: none;
+}
 
 

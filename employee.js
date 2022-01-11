@@ -21,7 +21,8 @@ const depositRequestShow = document.getElementById('board3');
 const withdrawRequestShow = document.getElementById('board4');
 const depositRequest = document.getElementById('depositRequest');
 const withdrawRequest = document.getElementById('withdrawRequest');
-
+const addClientUser = document.getElementById('addClientUser');
+const regiForm = document.getElementById('regiForm');
 window.onload = () => {
     registerDisplay();
     clientDisplay();
@@ -55,13 +56,13 @@ function registerDisplay(){
         });
     }
 }
-
 function viewTask(){
     userBoard.style.display = "inline-block"
     var table = document.getElementById('myTable'),rIndex;
   
     for(var i = 0; i < table.rows.length;i++){
         table.rows[i].onclick = function(){
+        rIndex = this.rowIndex; 
         document.getElementById('firstName1').innerText = this.cells[1].innerHTML;
         document.getElementById('lastName1').innerText = this.cells[3].innerHTML;
         document.getElementById('accountNumber').innerText = this.cells[0].innerHTML;
@@ -80,18 +81,19 @@ function viewTask(){
   }
   }
   function deleteTask(index){
-      if(confirm("Are you sure you want to delete?")){
+      if(confirm("Are you sure you want to decline?")){
           let getLocalStorageData = localStorage.getItem("registrationData");
           listArray = JSON.parse(getLocalStorageData);
           listArray.splice(index, 1); //delete or remove the li
           localStorage.setItem("registrationData", JSON.stringify(listArray));
-          display();
+          userBoard.style.display ="none"
+          registerDisplay();
       }
   }
   
   function performSearch() {
-      const search = document.getElementById('search');
-      const table = document.getElementById("myTable");
+      const search = document.getElementById('search1');
+      const table = document.getElementById("myTable1");
       const trs = table.tBodies[0].getElementsByTagName("tr");
       // Declare search string 
       var filter = search.value.toUpperCase();
@@ -115,7 +117,7 @@ function viewTask(){
       }
     }
     // add event listener to search box
-search.addEventListener('keyup', performSearch);
+search1.addEventListener('keyup', performSearch);
   
   approve.onclick = (index) =>{
       if(confirm("Are you sure you want to Approve?")){
@@ -140,7 +142,7 @@ search.addEventListener('keyup', performSearch);
           listArray = JSON.parse(getLocalStorageData);
           listArray.splice(index,1); //delete or remove the li
           localStorage.setItem("registrationData", JSON.stringify(listArray));
-          display();
+          registerDisplay();
           alert("Registered Successfully")
           window.location.reload()
       }
@@ -189,13 +191,14 @@ function viewTask1(){
     };
   }
   }
+//   delete client
   function deleteTask1(index){
       if(confirm("Are you sure you want to delete?")){
           let getLocalStorageData = localStorage.getItem("clientData");
           listArray = JSON.parse(getLocalStorageData);
           listArray.splice(index, 1); //delete or remove the li
           localStorage.setItem("clientData", JSON.stringify(listArray));
-          display();
+          clientDisplay();
       }
   }
 
@@ -335,6 +338,9 @@ function viewTask3(){
         alert("Approved Successfully")
     }
 }
+decline.onclick = (index) =>{
+    deleteTask(index);
+}
 clientList.onclick = () =>{
     pendingClientList.style.display  ="none"
     depositRequestShow.style.display = "none"
@@ -344,11 +350,14 @@ clientList.onclick = () =>{
   clientDisplay();
 
 }
+
 pendingList.onclick = () =>{
     pendingClientList.style.display  ="inline-block"
     clientListShow.style.display  ="none"
     depositRequestShow.style.display ="none"
     withdrawRequestShow.style.display = "none"
+    regiForm.style.display ="none"
+
     sideBar.style.left = "-232px"
     registerDisplay();
 }
@@ -356,6 +365,7 @@ depositRequest.onclick = () =>{
     pendingClientList.style.display  ="none"
     clientListShow.style.display  ="none"
     withdrawRequestShow.style.display = "none"
+    regiForm.style.display ="none"
     depositRequestShow.style.display = "inline-block"
     sideBar.style.left = "-232px"
     depositRequestDisplay()
@@ -364,9 +374,18 @@ withdrawRequest.onclick = () =>{
     pendingClientList.style.display  ="none"
     clientListShow.style.display  ="none"
     depositRequestShow.style.display = "none"
+    regiForm.style.display ="none"
     withdrawRequestShow.style.display = "inline-block"
     sideBar.style.left = "-232px"
     withdrawRequestDisplay();
+}
+addClientUser.onclick = () =>{
+    pendingClientList.style.display  ="none"
+    clientListShow.style.display  ="none"
+    depositRequestShow.style.display = "none"
+    withdrawRequestShow.style.display = "none"
+    regiForm.style.display ="block"
+    sideBar.style.left = "-232px"
 }
 menu_bar1.onclick = () =>{
     sideBar.style.left = "0"
@@ -386,3 +405,53 @@ exitUsers2.onclick = () =>{
 exitUsers3.onclick = () =>{
     userBoard3.style.display = "none"
 }
+
+
+
+const signUp = e =>{
+    var select = document.getElementById('gender7');
+    var option = select.options[select.selectedIndex];
+    clientDb = JSON.parse(localStorage.getItem('clientData')) || [];
+    let exist = clientDb.length && 
+    JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username.toLowerCase() == document.getElementById('username7').value.toLowerCase())  //&& data.Account_Number === document.getElementById('accountNumber').value)
+    if(!exist){
+        clientDb.push({
+            Account_Number: document.getElementById('accountNumber7').value,
+            Firstname: document.getElementById('firstname7').value,
+            Middlename: document.getElementById('middlename7').value,
+            Lastname: document.getElementById('lastname7').value,
+            Gender: option.value,
+            Contact: document.getElementById('contact7').value,
+            Email: document.getElementById('email7').value,
+            Amount: document.getElementById('amount7').value,
+            Username: document.getElementById('username7').value,
+            Password: document.getElementById('pword7').value  
+        });
+        localStorage.setItem('clientData', JSON.stringify(clientDb));
+        alert("Registered Successfully")
+        document.getElementById('accountNumber7').innerHTML = (`${parseInt(randomnumber(1000,9999))} ${parseInt(randomnumber1(1000,9999))} ${parseInt(randomnumber2(1000,9999))} ${parseInt(randomnumber3(1000,9999))}`)
+        document.getElementById('registerform').reset();
+        document.getElementById('firstname7').focus();
+        e.preventDefault();
+    }else{
+        alert("Username already exist!")
+        e.preventDefault();
+    }
+    e.preventDefault();
+}
+
+//for generating unique account number
+function randomnumber(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+function randomnumber1(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+function randomnumber2(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+function randomnumber3(num1,num2){
+    return Math.random() * (num2 - num1) + num1;
+}
+
+document.getElementById('accountNumber7').value = (`${parseInt(randomnumber(1000,9999))} ${parseInt(randomnumber1(1000,9999))} ${parseInt(randomnumber2(1000,9999))} ${parseInt(randomnumber3(1000,9999))}`)
