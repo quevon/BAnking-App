@@ -41,6 +41,9 @@ html::-webkit-scrollbar-thumb{
     z-index: 1000;
     transition: 0.3s;
 }
+.notifications{
+    color: red;
+}
 nav .fa-bars{
     padding: 10px 12px 10px 12px;
     font-size: 2rem;

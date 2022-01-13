@@ -23,15 +23,39 @@ const depositRequest = document.getElementById('depositRequest');
 const withdrawRequest = document.getElementById('withdrawRequest');
 const addClientUser = document.getElementById('addClientUser');
 const regiForm = document.getElementById('regiForm');
+const pendingNotif = document.getElementById('pendingNotif');
+const clientNoList = document.getElementById('clientNoList');
+const depoNoOfList = document.getElementById('depoNoOfList');
+const wdrawNoOfList = document.getElementById('wDrawNoOfList');
+
 window.onload = () => {
     registerDisplay();
     clientDisplay();
     depositRequestDisplay();
     withdrawRequestDisplay();
+    pendingAccounts();
+    noOfClients();
+    depositNoRequestList();
+    withdrawNoRequestList();
 }
 
+function withdrawNoRequestList(){
+    var data = JSON.parse(localStorage.getItem('withdrawRequestData'))
+    wdrawNoOfList.innerHTML = data.length
+}
+function depositNoRequestList(){
+    var data = JSON.parse(localStorage.getItem('depositRequestData'))
+    depoNoOfList.innerHTML = data.length
+}
+function noOfClients(){
+    var data = JSON.parse(localStorage.getItem('clientData'))
+    clientNoList.innerHTML = data.length
+}
+function pendingAccounts(){
+    var data = JSON.parse(localStorage.getItem('registrationData'))
+    pendingNotif.innerHTML = data.length
+}
 function registerDisplay(){
-    console.log(localStorage.getItem('registrationData'));
     if(localStorage.getItem('registrationData')){
         var output = document.querySelector('tbody');
         output.innerHTML = "";
@@ -150,7 +174,6 @@ search1.addEventListener('keyup', performSearch);
   }
   
 function clientDisplay(){
-    console.log(localStorage.getItem('clientData'));
     if(localStorage.getItem('clientData')){
         var output = document.getElementById('clientBody');
         output.innerHTML = "";
@@ -347,7 +370,7 @@ clientList.onclick = () =>{
     withdrawRequestShow.style.display = "none"
     clientListShow.style.display  ="inline-block"
     sideBar.style.left = "-232px"
-  clientDisplay();
+    clientDisplay();
 
 }
 
@@ -389,6 +412,8 @@ addClientUser.onclick = () =>{
 }
 menu_bar1.onclick = () =>{
     sideBar.style.left = "0"
+    pendingAccounts();
+    noOfClients();
 }
 menu_bar.onclick = () =>{
     sideBar.style.left = "-232px"
@@ -455,3 +480,4 @@ function randomnumber3(num1,num2){
 }
 
 document.getElementById('accountNumber7').value = (`${parseInt(randomnumber(1000,9999))} ${parseInt(randomnumber1(1000,9999))} ${parseInt(randomnumber2(1000,9999))} ${parseInt(randomnumber3(1000,9999))}`)
+
