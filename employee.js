@@ -38,7 +38,6 @@ window.onload = () => {
     depositNoRequestList();
     withdrawNoRequestList();
 }
-
 function withdrawNoRequestList(){
     var data = JSON.parse(localStorage.getItem('withdrawRequestData'))
     wdrawNoOfList.innerHTML = data.length
@@ -149,7 +148,7 @@ search1.addEventListener('keyup', performSearch);
       let exist = clientDb.length && 
       JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username.toLowerCase() == document.getElementById('username').innerText.toLowerCase())  //&& data.Account_Number === document.getElementById('accountNumber').value)
       if(!exist){
-          clientDb.push({
+          clientDb.unshift({
               Account_Number:document.getElementById('accountNumber').innerText, 
               Firstname:document.getElementById('firstName').innerText ,
               Middlename:document.getElementById('middleName').innerText, 
@@ -268,7 +267,7 @@ function viewTask2(){
     if(confirm("Are you sure you want to Approve?")){
         
         clientDb = JSON.parse(localStorage.getItem('depositData')) || [];
-        clientDb.push({
+        clientDb.unshift({
             Account_Number:document.getElementById('accountNumber3').innerText,
             Date:document.getElementById('date1').innerText, 
             Time:document.getElementById('time1').innerText ,
@@ -335,7 +334,7 @@ function viewTask3(){
     if(confirm("Are you sure you want to Approve?")){
         
         clientDb = JSON.parse(localStorage.getItem('withdrawData')) || [];
-        clientDb.push({
+        clientDb.unshift({
             Account_Number:document.getElementById('accountNumber4').innerText,
             Date:document.getElementById('date2').innerText, 
             Time:document.getElementById('time2').innerText ,
@@ -440,7 +439,7 @@ const signUp = e =>{
     let exist = clientDb.length && 
     JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username.toLowerCase() == document.getElementById('username7').value.toLowerCase())  //&& data.Account_Number === document.getElementById('accountNumber').value)
     if(!exist){
-        clientDb.push({
+        clientDb.unshift({
             Account_Number: document.getElementById('accountNumber7').value,
             Firstname: document.getElementById('firstname7').value,
             Middlename: document.getElementById('middlename7').value,

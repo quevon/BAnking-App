@@ -5,11 +5,11 @@ const signUp = e =>{
     let exist = regiDb.length && 
     JSON.parse(localStorage.getItem('registrationData')).some(data=> data.Username.toLowerCase() == document.getElementById('username').value.toLowerCase())  //&& data.Account_Number === document.getElementById('accountNumber').value)
     if(!exist){
-        regiDb.push({
+        regiDb.unshift({
             Account_Number: document.getElementById('accountNumber').value,
             Firstname: document.getElementById('firstname').value,
             Middlename: document.getElementById('middlename').value,
-            Lastname: document.getElementById('lastname').value,
+            Lastname: document.getElementById('lastname').value,    
             Gender: option.value,
             Contact: document.getElementById('contact').value,
             Email: document.getElementById('email').value,

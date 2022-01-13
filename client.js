@@ -91,16 +91,6 @@ inputAccount.onkeyup = e => {
     var inputAccount1 = document.getElementById('recieverAccountNumber');
     var receiverName = document.getElementById('recieverName')
 
-    // let getLocalStorageData2 = localStorage.getItem("formData");   
-    // listArray2 = JSON.parse(getLocalStorageData2); 
-    // console.log(listArray2);
-    // objIndex = listArray2.findIndex((obj => obj.Account_Number == inputAccount1.value));
-    // if(objIndex){
-    //     receiverName.innerHTML = `${listArray2[objIndex].Firstname} ${listArray2[objIndex].Lastname}`;
-    //     receiverMoney.value = listArray2[objIndex].Amount;
-    // }else{
-    //     receiverName.innerHTML = "";
-    // }
     var data = JSON.parse(localStorage.getItem('clientData'));
     let exist = data.length && JSON.parse(localStorage.getItem('clientData')).some(data1=> data1.Account_Number == inputAccount1.value)
     objIndex = data.findIndex((obj => obj.Account_Number == inputAccount1.value));
@@ -137,7 +127,7 @@ const sendMoney = e =>{
         var totalAmount2 = parseFloat(inputAmount) + parseFloat(receiverMoney);
         totalbalanceReciever.innerHTML = totalAmount2;
         sentMoneyData = JSON.parse(localStorage.getItem('sentMoneyData')) || [];
-        sentMoneyData.push({
+        sentMoneyData.unshift({
             Account_Number: document.getElementById('account-number').innerHTML,
             Date: date,
             Time: finalTime,
@@ -173,7 +163,7 @@ const deposit = () =>{
     var GcashCode = document.getElementById('GcashCode').value;
 
     depositRequestData = JSON.parse(localStorage.getItem('depositRequestData')) || [];
-    depositRequestData.push({
+    depositRequestData.unshift({
         Account_Number: accountNumber.innerHTML,
         Account_Name:   accountName.innerHTML,
         Date: date,
@@ -198,11 +188,8 @@ const widthDraw = e =>{
         alert("You don't have enough balance!")
         e.preventDefault();
     }else{
-        // var totalAmount = parseFloat(currentBalance) - parseFloat(inputAmount);
-        // total.innerHTML = totalAmount;
-
         withdrawRequestData = JSON.parse(localStorage.getItem('withdrawRequestData')) || [];
-        withdrawRequestData.push({
+        withdrawRequestData.unshift({
             Account_Number:accountNumber.innerHTML,
             Account_name: accountName.innerHTML,
             Date: date,
@@ -212,12 +199,6 @@ const widthDraw = e =>{
             Withdraw_Amount: document.getElementById('withdrawValue').value,
         });
         localStorage.setItem('withdrawRequestData', JSON.stringify(withdrawRequestData));
-        // let getLocalStorageData2 = localStorage.getItem("clientData");   
-        // listArray2 = JSON.parse(getLocalStorageData2); 
-        // console.log(listArray2);
-        // objIndex = listArray2.findIndex((obj => obj.Username == usernameHeader.innerHTML));
-        // listArray2[objIndex].Amount = totalAmount;
-        // localStorage.setItem('clientData', JSON.stringify(listArray2));
         document.getElementById('withdrawform1').reset();
         document.getElementById('withdrawValue').focus();
         alert("Sent Successful,Kindly wait for approval!")
@@ -241,7 +222,7 @@ const addExpense = e =>{
         accountBalance.innerHTML = listArray2[objIndex].Amount; 
         localStorage.setItem('clientData', JSON.stringify(listArray2));
         formData1 = JSON.parse(localStorage.getItem('formData1')) || [];
-        formData1.push({
+        formData1.unshift({
             Account_Number: document.getElementById('account-number').innerText,
             Date: document.getElementById('date').innerText,
             Item: document.getElementById('expense').value,
