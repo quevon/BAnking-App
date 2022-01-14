@@ -41,11 +41,10 @@ const displayDate = document.getElementById('date');
 const logOut = document.getElementById('logOut');
 const today = new Date();
 const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
-var dt = new Date();
-var hours = dt.getHours() ; // gives the value in 24 hours format
+var hours = today.getHours() ; // gives the value in 24 hours format
 var AmOrPm = hours >= 12 ? 'pm' : 'am';
 hours = (hours % 12) || 12;
-var minutes = dt.getMinutes() ;
+var minutes = today.getMinutes() ;
 var finalTime = hours + ":" + minutes + " " + AmOrPm; 
 
 menu_bar1.onclick = () =>{
@@ -95,12 +94,25 @@ inputAccount.onkeyup = e => {
     let exist = data.length && JSON.parse(localStorage.getItem('clientData')).some(data1=> data1.Account_Number == inputAccount1.value)
     objIndex = data.findIndex((obj => obj.Account_Number == inputAccount1.value));
     if (exist){
-        receiverName.innerHTML = `${data[objIndex].Firstname} ${data[objIndex].Lastname}`;
+        receiverName.value = `${data[objIndex].Firstname} ${data[objIndex].Lastname}`;
         receiverMoney.value = data[objIndex].Amount;
         receiverName.style.color = "green";
     }else{
-        receiverName.innerHTML = "No Receiver Available!";
+        receiverName.value = "No Receiver Available!";
         receiverName.style.color = "red";
+    }
+    
+}
+
+document.getElementById('sendMoneyValue').onkeyup = e => {
+    var currentBalance = accountBalance.innerHTML;
+    var error = document.getElementById('errorMessage')
+    var inputAmount = document.getElementById('sendMoneyValue').value;
+    
+    if(parseFloat(currentBalance) < parseFloat(inputAmount)){
+        error.style.display = "inline-block"   
+    }else{
+        error.style.display = "none"   
     }
     
 }
@@ -116,10 +128,8 @@ const sendMoney = e =>{
     let exist = data.length && 
     JSON.parse(localStorage.getItem('clientData')).some(data1=> data1.Account_Number == document.getElementById("recieverAccountNumber").value)
     if(!exist){
-        alert("Receiver doesn't exist!")
         e.preventDefault();
     }else if(parseFloat(currentBalance) < parseFloat(inputAmount)){
-        alert("You don't have enough balance!")
         e.preventDefault();
     }else{
         var totalAmount = parseFloat(currentBalance) - parseFloat(inputAmount);
@@ -132,7 +142,7 @@ const sendMoney = e =>{
             Date: date,
             Time: finalTime,
             Reciever_Account_No: document.getElementById('recieverAccountNumber').value,
-            Reciever_Account_Name: document.getElementById('recieverName').innerHTML,
+            Reciever_Account_Name: document.getElementById('recieverName').value,
             Sent_Amount: document.getElementById('sendMoneyValue').value,
             Balance: totalAmount,
         });
@@ -150,7 +160,6 @@ const sendMoney = e =>{
         objIndex = listArray4.findIndex((obj => obj.Account_Number == inputAccount.value));
         listArray4[objIndex].Amount = totalAmount2;
         localStorage.setItem('clientData', JSON.stringify(listArray4));
-        document.getElementById('recieverName').innerHTML = '';
         document.getElementById('sendMoneyForm1').reset();
         document.getElementById('recieverAccountNumber').focus();
         alert("Sent Successfully!")

@@ -76,6 +76,29 @@
             </div>
          
         </div>
+        <section class="background">
+            <div class="user-info-box">
+                <i id="exit1" class="fas fa-arrow-left"></i>
+                <div class="user-profilepic">
+                    <img src="./images/12.png">
+                </div>
+                <div class="profile-name">
+                    <span id="firstName2"></span> <span id="lastName2"></span>
+                </div>
+                 <ul>
+                    <li><label for="">Account Number:</label><span id="accountNumber2"></span></li>
+                    <li><label for="">Firstname:</label><span id="firstName3"></span></li>
+                    <li><label for="">Middlename:</label><span id ="middleName2"></span></li>
+                    <li><label for="">Lastname:</label><span id="lastName3"></span></li>
+                    <li><label for="">Gender:</label><span id="gender3"></span></li>
+                    <li><label for="">Contact Number:</label><span id="contactNumber2"></span></li>
+                    <li><label for="">Email:</label><span id="email2"></span></li>
+                    <li><label for="">Balance:</label><span id="balance2"></span></li>
+                </ul>
+                <div class="buttons">
+                    <button id="depositMoney">Edit Profile</button>
+                </div>
+            </section>
         <section class="background" id ="expenseform">
             <h1 id="itemCost2"></h1>
             <div  class="expense-box">
@@ -131,10 +154,11 @@
             <div class="sendMoney-box">
                 <i id="exit3" class="fa fa-close"></i>
                 <form id="sendMoneyForm1" role="form" onsubmit="sendMoney(event)">
-                    <h3 >Account Name:<span id ="recieverName"></span></h3>
                     <input  id="recieverAccountNumber" name = "Item" type="text" class="input-field1" placeholder="Enter Account #" required>
-                    <input  id="receiverMoney" name = "Item" type="number" class="input-field1 hide" placeholder="Reciever Money" required>
-                    <input  id="sendMoneyValue" name = "Item" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <input  id="recieverName" name = "rName" type="text" class="input-field1" placeholder="Receiver Name" disabled required>
+                    <input  id="receiverMoney" name = "rMoney" type="number" class="input-field1 hide" placeholder="Reciever Money">
+                    <input  id="sendMoneyValue" name = "value" type="number" class="input-field1" placeholder="Enter amount" required>
+                    <div id="errorMessage"><span><i class="fas fa-exclamation"></i></span>You don't have enough balance!</div>
                     <p class="current_money">Current Balance: <span id ="current_money2"></span></p>
                     <p class="current_money hide">Receiver Balance: <span id ="receiver_money2"></span></p>
                     <button id="sendMoneyBtn" type="submit" class="sendMoney-btn">Send Money</button>  

@@ -27,6 +27,21 @@ const pendingNotif = document.getElementById('pendingNotif');
 const clientNoList = document.getElementById('clientNoList');
 const depoNoOfList = document.getElementById('depoNoOfList');
 const wdrawNoOfList = document.getElementById('wDrawNoOfList');
+const depositMoney = document.getElementById('depositMoney');
+const withdrawMoney = document.getElementById('withdrawMoney');
+const tHistory = document.getElementById('tHistory');
+const sendMoney = document.getElementById('sendMoney');
+const depositExitForm = document.getElementById('depositExitForm');
+const withdrawExitForm = document.getElementById('withDrawExitForm');
+const depositform = document.getElementById('depositform');
+const withdrawform = document.getElementById('withdrawform');
+const today = new Date();
+const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+var hours = today.getHours() ; // gives the value in 24 hours format
+var AmOrPm = hours >= 12 ? 'pm' : 'am';
+hours = (hours % 12) || 12;
+var minutes = today.getMinutes() ;
+var finalTime = hours + ":" + minutes + " " + AmOrPm; 
 
 window.onload = () => {
     registerDisplay();
@@ -207,9 +222,10 @@ function viewTask1(){
         document.getElementById('firstName3').innerText = this.cells[1].innerHTML;
         document.getElementById('middleName2').innerText = this.cells[2].innerHTML;
         document.getElementById('lastName3').innerText = this.cells[3].innerHTML;
-        document.getElementById('contactNumber2').innerText = this.cells[4].innerHTML;
+        document.getElementById('gender3').innerText = this.cells[4].innerHTML;
         document.getElementById('email2').innerText = this.cells[5].innerHTML;
-        document.getElementById('balance2').innerText = this.cells[6].innerHTML;
+        document.getElementById('contactNumber2').innerText = this.cells[6].innerHTML;
+        document.getElementById('balance2').innerText = this.cells[7].innerHTML;
     };
   }
   }
@@ -223,8 +239,6 @@ function viewTask1(){
           clientDisplay();
       }
   }
-
-
 function depositRequestDisplay(){
     if(localStorage.getItem('depositRequestData')){
         var output = document.getElementById('depositRequestBody');
@@ -367,6 +381,7 @@ clientList.onclick = () =>{
     pendingClientList.style.display  ="none"
     depositRequestShow.style.display = "none"
     withdrawRequestShow.style.display = "none"
+    regiForm.style.display = "none"
     clientListShow.style.display  ="inline-block"
     sideBar.style.left = "-232px"
     clientDisplay();
@@ -379,7 +394,6 @@ pendingList.onclick = () =>{
     depositRequestShow.style.display ="none"
     withdrawRequestShow.style.display = "none"
     regiForm.style.display ="none"
-
     sideBar.style.left = "-232px"
     registerDisplay();
 }
@@ -413,6 +427,8 @@ menu_bar1.onclick = () =>{
     sideBar.style.left = "0"
     pendingAccounts();
     noOfClients();
+    depositNoRequestList();
+    withdrawNoRequestList();
 }
 menu_bar.onclick = () =>{
     sideBar.style.left = "-232px"
@@ -429,9 +445,6 @@ exitUsers2.onclick = () =>{
 exitUsers3.onclick = () =>{
     userBoard3.style.display = "none"
 }
-
-
-
 const signUp = e =>{
     var select = document.getElementById('gender7');
     var option = select.options[select.selectedIndex];
@@ -463,7 +476,45 @@ const signUp = e =>{
     }
     e.preventDefault();
 }
+const deposit = (e) =>{
+    var depositValue = document.getElementById('depositValue').value;
 
+    depositData = JSON.parse(localStorage.getItem('depositData')) || [];
+    depositData.unshift({
+        Account_Number: document.getElementById('accountNumber2').innerHTML,
+        Date: date,
+        Time: finalTime,
+        Deposit_Amount: depositValue,
+    });
+    localStorage.setItem('depositData', JSON.stringify(depositData));
+
+    let getLocalStorageData3 = localStorage.getItem("clientData");   
+    listArray3 = JSON.parse(getLocalStorageData3); 
+    objIndex = listArray3.findIndex((obj => obj.Account_Number == document.getElementById('accountNumber2').innerHTML));
+    var total = parseFloat(listArray3[objIndex].Amount) + parseFloat(document.getElementById('depositValue').value);
+    listArray3[objIndex].Amount = total;
+    document.getElementById('balance2').innerHTML = total;
+    localStorage.setItem('clientData', JSON.stringify(listArray3));
+    clientDisplay();
+    depositform.style.display = "none"
+
+    document.getElementById('depositForm1').reset();
+    document.getElementById('depositValue').focus();
+    e.preventDefault();
+    alert("Deposit Successful!")
+}
+depositMoney.onclick = () =>{
+    depositform.style.display = "inline-block"
+}
+depositExitForm.onclick = () =>{
+    depositform.style.display = "none"
+}
+withdrawMoney.onclick = () =>{
+    withdrawform.style.display = "inline-block"
+}
+withdrawExitForm.onclick = () =>{
+    withdrawform.style.display = "none"
+}
 //for generating unique account number
 function randomnumber(num1,num2){
     return Math.random() * (num2 - num1) + num1;
