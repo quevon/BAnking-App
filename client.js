@@ -37,6 +37,9 @@ const sentMoneyExitHistory = document.getElementById('exit8');
 const menu_bar = document.getElementById('menu-bar');
 const menu_bar1 = document.getElementById('menu-bar1');
 const sideBar = document.getElementById('sideBar');
+const myprofile = document.getElementById('myprofile');
+const myprofileshow = document.getElementById('myprofileshow');
+const myprofilexit = document.getElementById('myprofilexit')
 const displayDate = document.getElementById('date');
 const logOut = document.getElementById('logOut');
 const today = new Date();
@@ -47,6 +50,31 @@ hours = (hours % 12) || 12;
 var minutes = today.getMinutes() ;
 var finalTime = hours + ":" + minutes + " " + AmOrPm; 
 
+myprofileshow.onclick = () =>{
+    myprofile.style.display = "inline-block"
+    sideBar.style.left = "-232px"
+    gridBoard.style.opacity =".5"
+
+    let getLocalStorageData = localStorage.getItem("clientData");   
+    listArray = JSON.parse(getLocalStorageData);    
+    objIndex = listArray.findIndex((obj => obj.Account_Number == accountNumber.innerHTML));
+    document.getElementById('firstName2').innerHTML = listArray[objIndex].Firstname
+    document.getElementById('lastName2').innerHTML = listArray[objIndex].Lastname
+    document.getElementById('accountNumber2').innerHTML = listArray[objIndex].Account_Number
+    document.getElementById('firstName3').innerHTML = listArray[objIndex].Firstname
+    document.getElementById('middleName2').innerHTML = listArray[objIndex].Middlename
+    document.getElementById('lastName3').innerHTML = listArray[objIndex].Lastname
+    document.getElementById('gender3').innerHTML = listArray[objIndex].Gender
+    document.getElementById('contactNumber2').innerHTML = listArray[objIndex].Contact
+    document.getElementById('email2').innerHTML = listArray[objIndex].Email
+    document.getElementById('balance2').innerHTML = listArray[objIndex].Amount
+    document.getElementById('username2').innerHTML = listArray[objIndex].Username
+    document.getElementById('password2').innerHTML = listArray[objIndex].Password
+}
+myprofilexit.onclick = () =>{
+    myprofile.style.display = 'none'
+    gridBoard.style.opacity ="1"
+}
 menu_bar1.onclick = () =>{
     sideBar.style.left = "0"
 }
