@@ -58,7 +58,6 @@ login1.onclick = (a)=>{
     const password = document.getElementById("psw").value;
     const adminUsername = "admin"
     const adminPassword = "admin"
-    var adminDb = JSON.parse(localStorage.getItem('adminData'));
     var clientDb  = JSON.parse(localStorage.getItem('clientData'));
 
     // let adminUserExist = adminDb.length && JSON.parse(localStorage.getItem('adminData')).some(data=> data.Username == username && data.Password == password)
