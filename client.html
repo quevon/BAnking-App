@@ -98,7 +98,16 @@
                     <li><label for="">Password:</label><span id="password2"></span></li>
                 </ul>
                 <div class="buttons">
-                    <button id="depositMoney">Edit Profile</button>
+                    <button id="changePasswordBtn">Change Password</button>
+                </div>
+            </section>
+            <section class="background" id="changePasswordModal">
+                <div class="changePassword-box">
+                    <i id="changepasswordexit" class="fa fa-close"></i>
+                    <form id="withdrawform1" role="form" onsubmit="changepassword(event)">
+                        <input  id="changePassInput" name = "Item" type="text" class="input-field1" placeholder="Enter new Password" required>
+                        <button id="changeBtn" type="submit" class="withdraw-btn">Update</button>  
+                    </form> 
                 </div>
             </section>
         <section class="background" id ="expenseform">

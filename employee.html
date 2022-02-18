@@ -151,7 +151,6 @@
                         <i id="depositExitForm" class="fa fa-close"></i>
                         <form id="depositForm1" role="form" onsubmit="deposit(event)">
                             <input  id="depositValue" name = "amount" type="number" class="input-field" placeholder="Deposit Amount" required>
-                            <p class="current_money">Current Balance: <span id ="current_money"></span></p>
                             <button id="depositBtn" type="submit" class="deposit-btn">Deposit</button>
                         </form> 
                     </div>
@@ -159,9 +158,8 @@
                 <section class="background" id="withdrawform">
                     <div class="withdraw-box">
                         <i id="withDrawExitForm" class="fa fa-close"></i>
-                        <form id="withdrawform1" role="form" onsubmit="widthDraw(event)">
+                        <form id="withdrawform1" role="form" onsubmit="withDraw(event)">
                             <input  id="withdrawValue" name = "Item" type="number" class="input-field" placeholder="Enter amount" required>
-                            <p class="current_money">Current Balance: <span id ="current_money1"></span></p>
                             <button id="withdrawBtn" type="submit" class="withdraw-btn">Withdraw</button>  
                         </form> 
                     </div>

@@ -152,7 +152,7 @@ nav ul li a{
     background: linear-gradient(to right, #ff105f,#ffad06);
     border: 0;
     outline: none;
-    width: 30%;
+    width: 45%;
     padding: 10px 10px;
     cursor: pointer;
     display: block;
@@ -315,6 +315,25 @@ section form .current_money{
 .withdraw-box{
     width: 380px;
     height: 310px;
+    position: absolute;
+    margin: 10% auto 0 35%;
+    background: #fff;
+    padding: 5px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    box-shadow:  0 0 20px 9px #ff61241f;
+    border-radius: 20px;
+    cursor: pointer;
+    top: 0
+}
+#changePasswordModal{
+    display: none;
+}
+.changePassword-box{
+    width: 380px;
+    height:200px;
     position: absolute;
     margin: 10% auto 0 35%;
     background: #fff;

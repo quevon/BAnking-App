@@ -503,6 +503,38 @@ const deposit = (e) =>{
     e.preventDefault();
     alert("Deposit Successful!")
 }
+const withDraw = (e) =>{
+    var withdrawValue = document.getElementById('withdrawValue').value;
+
+    if(parseFloat(withdrawValue) > parseFloat(document.getElementById('balance2').innerHTML)){
+        e.preventDefault()
+        alert("You don't have enough balance!")
+    }else{
+    withdrawData = JSON.parse(localStorage.getItem('withdrawData')) || [];
+    withdrawData.unshift({
+        Account_Number: document.getElementById('accountNumber2').innerHTML,
+        Date: date,
+        Time: finalTime,
+        Withdraw_Amount: withdrawValue,
+    });
+    localStorage.setItem('withdrawData', JSON.stringify(withdrawData));
+
+    let getLocalStorageData3 = localStorage.getItem("clientData");   
+    listArray3 = JSON.parse(getLocalStorageData3); 
+    objIndex = listArray3.findIndex((obj => obj.Account_Number == document.getElementById('accountNumber2').innerHTML));
+    var total = parseFloat(listArray3[objIndex].Amount) - parseFloat(document.getElementById('withdrawValue').value);
+    listArray3[objIndex].Amount = total;
+    document.getElementById('balance2').innerHTML = total;
+    localStorage.setItem('clientData', JSON.stringify(listArray3));
+    clientDisplay();
+    withdrawform.style.display = "none"
+
+    document.getElementById('withdrawform1').reset();
+    document.getElementById('withdrawValue').focus();
+    e.preventDefault();
+    alert("Withdraw Successful!")
+    }
+}
 depositMoney.onclick = () =>{
     depositform.style.display = "inline-block"
 }

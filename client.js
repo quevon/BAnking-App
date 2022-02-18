@@ -39,7 +39,11 @@ const menu_bar1 = document.getElementById('menu-bar1');
 const sideBar = document.getElementById('sideBar');
 const myprofile = document.getElementById('myprofile');
 const myprofileshow = document.getElementById('myprofileshow');
-const myprofilexit = document.getElementById('myprofilexit')
+const myprofilexit = document.getElementById('myprofilexit');
+const changepasswordexit = document.getElementById('changepasswordexit');
+const changePasswordModal = document.getElementById('changePasswordModal');
+const changePasswordBtn = document.getElementById('changePasswordBtn');
+const changeBtn = document.getElementById('changeBtn');
 const displayDate = document.getElementById('date');
 const logOut = document.getElementById('logOut');
 const today = new Date();
@@ -49,6 +53,7 @@ var AmOrPm = hours >= 12 ? 'pm' : 'am';
 hours = (hours % 12) || 12;
 var minutes = today.getMinutes() ;
 var finalTime = hours + ":" + minutes + " " + AmOrPm; 
+
 
 myprofileshow.onclick = () =>{
     myprofile.style.display = "inline-block"
@@ -74,6 +79,29 @@ myprofileshow.onclick = () =>{
 myprofilexit.onclick = () =>{
     myprofile.style.display = 'none'
     gridBoard.style.opacity ="1"
+}
+changePasswordBtn.onclick = () =>{
+    changePasswordModal.style.display = "inline-block"
+
+    var oldpassword = document.getElementById('password2');
+    var changePassInput = document.getElementById('changePassInput');
+
+     changePassInput.value = oldpassword.innerHTML
+}
+const changepassword = (e) =>{
+    var newPassword = document.getElementById('changePassInput');
+    let getLocalStorageData3 = localStorage.getItem("clientData");   
+    listArray3 = JSON.parse(getLocalStorageData3);    
+    objIndex = listArray3.findIndex((obj => obj.Account_Number == accountNumber.innerHTML));
+    listArray3[objIndex].Password = newPassword.value;
+    localStorage.setItem('clientData', JSON.stringify(listArray3))
+    document.getElementById('password2').innerHTML = newPassword.value
+    changePasswordModal.style.display ="none"
+    e.preventDefault();
+    alert("Changed Password Successfully")
+}
+changepasswordexit.onclick = () =>{
+    changePasswordModal.style.display = "none"
 }
 menu_bar1.onclick = () =>{
     sideBar.style.left = "0"
