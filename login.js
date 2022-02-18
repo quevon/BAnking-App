@@ -58,24 +58,22 @@ login1.onclick = (a)=>{
     const password = document.getElementById("psw").value;
     const adminUsername = "admin"
     const adminPassword = "admin"
-    var clientDb  = JSON.parse(localStorage.getItem('clientData'));
-
-    // let adminUserExist = adminDb.length && JSON.parse(localStorage.getItem('adminData')).some(data=> data.Username == username && data.Password == password)
-    let clientUserExist = clientDb.length && JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username == username && data.Password == password)
-    
+   
     
     if(username == adminUsername && password == adminPassword){
         window.open("./employee.html", "_blank");
         document.getElementById('loginform').reset();
         document.getElementById('uname').focus();
-    }else if(clientUserExist){
+    }
+    var clientDb  = JSON.parse(localStorage.getItem('clientData'));
+    let clientUserExist = clientDb.length && JSON.parse(localStorage.getItem('clientData')).some(data=> data.Username == username && data.Password == password)
+    if(clientUserExist){
         CurrentUserDb = JSON.parse(sessionStorage.getItem('currentClientUser')) || [];
         CurrentUserDb.push({
             Current_User: username,
         });
         localStorage.setItem('currentClientUser', JSON.stringify(CurrentUserDb));
         location.replace("./client.html");
-        
     }else{
         alert("Log In Failed!")
         a.preventDefault();

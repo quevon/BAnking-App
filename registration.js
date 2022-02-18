@@ -20,7 +20,7 @@ const signUp = e =>{
             Password: document.getElementById('pword').value  
         });
         localStorage.setItem('registrationData', JSON.stringify(regiDb));
-        alert("Registered Successfully")
+        alert("Wait for admin approval!")
         document.getElementById('accountNumber').value = (`${parseInt(randomnumber(1000,9999))} ${parseInt(randomnumber1(1000,9999))} ${parseInt(randomnumber2(1000,9999))} ${parseInt(randomnumber3(1000,9999))}`)
         document.getElementById('registerform').reset();
         document.getElementById('firstname').focus();
