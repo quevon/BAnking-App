@@ -107,7 +107,7 @@ menu_bar1.onclick = () =>{
     sideBar.style.left = "0"
 }
 menu_bar.onclick = () =>{
-    sideBar.style.left = "-232px"
+    sideBar.style.left = "-400px"
 }
 displayDate.innerHTML = date
 window.onload = () =>{

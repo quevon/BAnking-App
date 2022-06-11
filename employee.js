@@ -239,6 +239,7 @@ function viewTask1(){
           clientDisplay();
       }
   }
+
 function depositRequestDisplay(){
     if(localStorage.getItem('depositRequestData')){
         var output = document.getElementById('depositRequestBody');
