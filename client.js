@@ -375,7 +375,7 @@ function editRow(e){
     var newBalance = parseFloat(accountBalance.innerText) + parseFloat(newItemCost);
     var indexofrows = document.getElementById('itemIndex').innerHTML;
     
-    if(parseFloat(accountBalance.innerText) < parseFloat(newCost)){
+    if(parseFloat(accountBalance.innerText) < parseFloat(newCost) && parseFloat(itemCost) < parseFloat(accountBalance.innerText)){
         alert("You don't have enough balance!")
         e.preventDefault();
     }else{
